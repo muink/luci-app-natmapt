@@ -1,6 +1,7 @@
 'use strict';
 'require form';
 'require fs';
+'require uci';
 'require rpc';
 'require view';
 'require tools.widgets as widgets';
@@ -42,12 +43,46 @@ function getStatus() {
 
 return view.extend({
 	load: function() {
-		return getStatus();
+	return Promise.all([
+		getStatus(),
+		uci.load('natmap')
+	]);
 	},
-	render: function(status) {
+
+	render: function(res) {
+		var status = res[0];
+
 		var m, s, o;
 
 		m = new form.Map('natmap', _('NATMap'));
+
+		s = m.section(form.TypedSection, 'global');
+		s.anonymous = true;
+
+		o = s.option(form.Flag, 'enabled', _('Enable'));
+		o.default = o.disabled;
+		o.rmempty = false;
+
+		o = s.option(form.Value, 'def_tcp_stun', _('Default ') + _('TCP STUN ') + _('Server'));
+		o.datatype = 'hostname';
+		o.default = 'stunserver.stunprotocol.org';
+		o.rmempty = false;
+
+		o = s.option(form.Value, 'def_udp_stun', _('Default ') + _('UDP STUN ') + _('Server'));
+		o.datatype = 'hostname';
+		o.default = 'stun.miwifi.com';
+		o.rmempty = false;
+
+		o = s.option(form.Value, 'def_http_keep', _('Default ') + _('HTTP keep-alive ') + _('Server'));
+		o.datatype = 'hostname';
+		o.default = 'www.baidu.com';
+		o.rmempty = false;
+
+		o = s.option(form.Value, 'def_interval', _('Default ') + _('keep-alive interval (seconds)'));
+		o.datatype = "and(uinteger, min(1))";
+		o.default = 10;
+		o.rmempty = false;
+
 		s = m.section(form.GridSection, 'natmap');
 		s.addremove = true;
 		s.anonymous = true;
