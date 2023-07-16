@@ -10,6 +10,7 @@
 var conf = 'natmap';
 var natmap_instance = 'natmap';
 var nattest_rulename = 'natmap-natest';
+var nattest_result_path = '/tmp/natmap-natBehavior';
 
 var callServiceList = rpc.declare({
 	object: 'service',
@@ -51,6 +52,8 @@ return view.extend({
 	return Promise.all([
 		getStatus(),
 		network.getWANNetworks(),
+		L.resolveDefault(fs.stat('/usr/bin/stunclient'), null),
+		L.resolveDefault(fs.read(nattest_result_path), null),
 		uci.load('firewall'),
 		uci.load('natmap')
 	]);
@@ -58,7 +61,9 @@ return view.extend({
 
 	render: function(res) {
 		var status = res[0],
-			wans = res[1];
+			wans = res[1],
+			has_stunclient = res[2].path,
+			nattest_result = res[3] ? res[3].trim() : '';
 
 		var m, s, o;
 
@@ -172,6 +177,35 @@ return view.extend({
 				uci.set(fwcfg, sid, 'dest_port', value);
 				uci.set(fwcfg, sid, 'target', 'ACCEPT');
 				//fs.exec('/etc/init.d/firewall', ['reload']); // reload on init.d/natmap:service_triggers
+			}
+		};
+
+		o = s.option(form.Button, '_nattest', _('Check NAT Behavior'));
+		o.inputtitle = _('Check');
+		o.inputstyle = 'apply';
+		if (! has_stunclient) {
+			o.description = _('To check NAT Behavior you need to install <a href="%s"><b>stuntman-client</b></a> first')
+				.format('https://github.com/muink/openwrt-stuntman');
+			o.readonly = true;
+		}
+		o.onclick = function() {
+			window.setTimeout(function() {
+				window.location = window.location.href.split('#')[0];
+			}, 5000);
+
+			let test_port = uci.get_first(conf, 'global', 'test_port');
+			let udp_stun_host = uci.get_first(conf, 'global', 'def_udp_stun');
+			let tcp_stun_host = uci.get_first(conf, 'global', 'def_tcp_stun');
+
+			return fs.exec('/usr/libexec/natmap/natcheck.sh', [udp_stun_host + ':3478', tcp_stun_host + ':3478', test_port, nattest_result_path])
+				.catch(function(e) { ui.addNotification(null, E('p', e.message), 'error') });
+		};
+
+		if (nattest_result.length) {
+			o = s.option(form.DummyValue, '_nattest_result', '　');
+			o.rawhtml = true;
+			o.cfgvalue = function(s) {
+				return nattest_result;
 			}
 		};
 

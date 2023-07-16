@@ -3,7 +3,9 @@
 		"description": "Grant access to LuCI app natmap",
 		"read": {
 			"file": {
-				"/var/run/natmap/*": [ "read" ]
+				"/var/run/natmap/*": [ "read" ],
+				"/tmp/natmap-natBehavior": [ "read" ],
+				"/usr/libexec/natmap/natcheck.sh": [ "exec" ]
 			},
 			"ubus": {
 				"service": [ "list" ]
