@@ -8,10 +8,10 @@
 			"ubus": {
 				"service": [ "list" ]
 			},
-			"uci": ["natmap"]
+			"uci": ["firewall", "natmap"]
 		},
 		"write": {
-			"uci": ["natmap"]
+			"uci": ["firewall", "natmap"]
 		}
 	}
 }

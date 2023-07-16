@@ -4,7 +4,12 @@
 'require uci';
 'require rpc';
 'require view';
+'require network';
 'require tools.widgets as widgets';
+
+var conf = 'natmap';
+var natmap_instance = 'natmap';
+var nattest_rulename = 'natmap-natest';
 
 var callServiceList = rpc.declare({
 	object: 'service',
@@ -45,12 +50,15 @@ return view.extend({
 	load: function() {
 	return Promise.all([
 		getStatus(),
+		network.getWANNetworks(),
+		uci.load('firewall'),
 		uci.load('natmap')
 	]);
 	},
 
 	render: function(res) {
-		var status = res[0];
+		var status = res[0],
+			wans = res[1];
 
 		var m, s, o;
 
@@ -82,6 +90,90 @@ return view.extend({
 		o.datatype = "and(uinteger, min(1))";
 		o.default = 10;
 		o.rmempty = false;
+
+		o = s.option(form.Value, 'test_port', _('NATBehavior-Test port open on'), _('Please check <a href="%s"><b>Firewall Rules</b></a> to avoid port conflicts.</br>')
+			+ _('luci check may not detect all conflicts.')
+			.format(L.url('admin', 'network', 'firewall')));
+		o.datatype = "range(1, 65535)";
+		o.placeholder = 3445;
+		o.rmempty = false;
+		o.validate = function(section_id, value) {
+			if (value == null || value == '' || value == 'ignore')
+				return _('Expecting: non-empty value');
+
+			let conf = 'firewall';
+			let fw_forwards = uci.sections(conf, 'redirect');
+			let fw_rules = uci.sections(conf, 'rule');
+
+			for (var i = 0; i < fw_forwards.length; i++) {
+				let sid = fw_forwards[i]['.name'];
+				if (value == uci.get(conf, sid, 'src_dport'))
+					return _('This port is already used');
+			};
+
+			for (var i = 0; i < fw_rules.length; i++) {
+				let sid = fw_rules[i]['.name'];
+				if (uci.get(conf, sid, 'name') == nattest_rulename)
+					continue;
+				if ( (uci.get(conf, sid, 'dest') || '') == '' ) {
+					if (value == uci.get(conf, sid, 'dest_port'))
+						return _('This port is already used');
+				} else {
+					// dest not this device
+					continue;
+				}
+			};
+
+			return true;
+		};
+		o.write = function(section_id, value) {
+			uci.set(conf, section_id, 'test_port', value);
+
+			let found = false;
+			let fwcfg = 'firewall';
+			let rules = uci.sections(fwcfg, 'rule');
+			for (var i = 0; i < rules.length; i++) {
+				let sid = rules[i]['.name'];
+				if (uci.get(fwcfg, sid, 'name') == nattest_rulename) {
+					found = sid;
+					break;
+				}
+			};
+
+			let wan_zone = 'wan';
+			if(wans) {
+				let def_wan = wans[0].getName();
+				let zones = uci.sections(fwcfg, 'zone');
+				for (var i = 0; i < zones.length; i++) {
+					let sid = zones[i]['.name'];
+					if (uci.get(fwcfg, sid, 'masq') == 1) {
+						wan_zone = uci.get(fwcfg, sid, 'name');
+						break;
+					}
+				}
+			} else {
+				for (var i = 0; i < rules.length; i++) {
+					let sid = rules[i]['.name'];
+					if (uci.get(fwcfg, sid, 'src')) {
+						wan_zone = uci.get(fwcfg, sid, 'src');
+						break;
+					}
+				}
+			};
+
+			if(found) {
+				if (value != uci.get(fwcfg, found, 'dest_port'))
+					uci.set(fwcfg, found, 'dest_port', value);
+					//fs.exec('/etc/init.d/firewall', ['reload']); // reload on init.d/natmap:service_triggers
+			} else {
+				let sid = uci.add(fwcfg, 'rule');
+				uci.set(fwcfg, sid, 'name', nattest_rulename);
+				uci.set(fwcfg, sid, 'src', wan_zone);
+				uci.set(fwcfg, sid, 'dest_port', value);
+				uci.set(fwcfg, sid, 'target', 'ACCEPT');
+				//fs.exec('/etc/init.d/firewall', ['reload']); // reload on init.d/natmap:service_triggers
+			}
+		};
 
 		s = m.section(form.GridSection, 'natmap');
 		s.addremove = true;
