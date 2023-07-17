@@ -23,10 +23,10 @@ tcp_result="$(timeout 10 stunclient --protocol tcp --mode full --localport $port
 
 cat <<- EOF
 UDP TEST:
-$udp_result
+${udp_result:=Test timeout}
 
 TCP TEST:
-$tcp_result
+${tcp_result:=Test timeout}
 
 EOF
 

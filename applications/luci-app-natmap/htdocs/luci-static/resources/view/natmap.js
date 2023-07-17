@@ -72,23 +72,20 @@ return view.extend({
 		s = m.section(form.TypedSection, 'global');
 		s.anonymous = true;
 
-		o = s.option(form.Flag, 'enabled', _('Enable'));
+		o = s.option(form.Flag, 'enable', _('Enable'));
 		o.default = o.disabled;
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'def_tcp_stun', _('Default ') + _('TCP STUN ') + _('Server'));
 		o.datatype = 'hostname';
-		o.default = 'stunserver.stunprotocol.org';
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'def_udp_stun', _('Default ') + _('UDP STUN ') + _('Server'));
 		o.datatype = 'hostname';
-		o.default = 'stun.miwifi.com';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'def_http_keep', _('Default ') + _('HTTP keep-alive ') + _('Server'));
+		o = s.option(form.Value, 'def_http_server', _('Default ') + _('HTTP keep-alive ') + _('Server'));
 		o.datatype = 'hostname';
-		o.default = 'www.baidu.com';
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'def_interval', _('Default ') + _('keep-alive interval (seconds)'));
@@ -97,9 +94,9 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'test_port', _('NATBehavior-Test port open on'), _('Please check <a href="%s"><b>Firewall Rules</b></a> to avoid port conflicts.</br>')
-			+ _('luci check may not detect all conflicts.')
-			.format(L.url('admin', 'network', 'firewall')));
-		o.datatype = "range(1, 65535)";
+			.format(L.url('admin', 'network', 'firewall'))
+			+ _('luci check may not detect all conflicts.'));
+		o.datatype = "and(port, min(1))";
 		o.placeholder = 3445;
 		o.rmempty = false;
 		o.validate = function(section_id, value) {
@@ -210,15 +207,36 @@ return view.extend({
 		};
 
 		s = m.section(form.GridSection, 'natmap');
+		s.sortable  = true;
 		s.addremove = true;
 		s.anonymous = true;
 
 		o = s.option(form.Flag, 'enable', _('Enable'));
+		o.default = o.disabled;
 		o.editable = true;
+		o.rmempty = true;
 		o.modalonly = false;
 
+		o = s.option(form.Value, 'interval', _('Keep-alive interval'));
+		o.datatype = "and(uinteger, min(1))";
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.option(form.Value, 'stun_server', _('STUN server'));
+		o.datatype = 'hostname';
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.option(form.Value, 'http_server', _('HTTP server'), _('For TCP mode'));
+		o.datatype = 'hostname';
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.option(form.Value, 'comment', _('Comment'));
+		o.rmempty = true;
+
 		o = s.option(form.ListValue, 'udp_mode', _('Protocol'));
-		o.default = '1';
+		o.default = '0';
 		o.value('0', 'TCP');
 		o.value('1', 'UDP');
 		o.textvalue = function(section_id) {
@@ -234,25 +252,10 @@ return view.extend({
 		o.value('ipv6', _('IPv6 only'));
 
 		o = s.option(widgets.NetworkSelect, 'interface', _('Interface'));
-		o.modalonly = true;
-
-		o = s.option(form.Value, 'interval', _('Keep-alive interval'));
-		o.datatype = 'uinteger';
-		o.modalonly = true;
-
-		o = s.option(form.Value, 'stun_server', _('STUN server'));
-		o.datatype = 'host';
-		o.modalonly = true;
-		o.optional = false;
-		o.rmempty = false;
-
-		o = s.option(form.Value, 'http_server', _('HTTP server'), _('For TCP mode'));
-		o.datatype = 'host';
-		o.modalonly = true;
-		o.rmempty = false;
+		o.rmempty = true;
 
 		o = s.option(form.Value, 'port', _('Bind port'));
-		o.datatype = 'port';
+		o.datatype = "and(port, min(1))";
 		o.rmempty = false;
 
 		o = s.option(form.Flag, '_forward_mode', _('Forward mode'));
@@ -269,7 +272,7 @@ return view.extend({
 		o.depends('_forward_mode', '1');
 
 		o = s.option(form.Value, 'forward_port', _('Forward target port'));
-		o.datatype = 'port';
+		o.datatype = "and(port, min(1))";
 		o.modalonly = true;
 		o.depends('_forward_mode', '1');
 
