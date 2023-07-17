@@ -9,7 +9,7 @@
 
 var conf = 'natmap';
 var natmap_instance = 'natmap';
-var nattest_rulename = 'natmap-natest';
+var nattest_fw_rulename = 'natmap-natest';
 var nattest_result_path = '/tmp/natmap-natBehavior';
 
 var callServiceList = rpc.declare({
@@ -118,7 +118,7 @@ return view.extend({
 
 			for (var i = 0; i < fw_rules.length; i++) {
 				let sid = fw_rules[i]['.name'];
-				if (uci.get(conf, sid, 'name') == nattest_rulename)
+				if (uci.get(conf, sid, 'name') == nattest_fw_rulename)
 					continue;
 				if ( (uci.get(conf, sid, 'dest') || '') == '' ) {
 					if (value == uci.get(conf, sid, 'dest_port'))
@@ -139,7 +139,7 @@ return view.extend({
 			let rules = uci.sections(fwcfg, 'rule');
 			for (var i = 0; i < rules.length; i++) {
 				let sid = rules[i]['.name'];
-				if (uci.get(fwcfg, sid, 'name') == nattest_rulename) {
+				if (uci.get(fwcfg, sid, 'name') == nattest_fw_rulename) {
 					found = sid;
 					break;
 				}
@@ -172,7 +172,7 @@ return view.extend({
 					//fs.exec('/etc/init.d/firewall', ['reload']); // reload on init.d/natmap:service_triggers
 			} else {
 				let sid = uci.add(fwcfg, 'rule');
-				uci.set(fwcfg, sid, 'name', nattest_rulename);
+				uci.set(fwcfg, sid, 'name', nattest_fw_rulename);
 				uci.set(fwcfg, sid, 'src', wan_zone);
 				uci.set(fwcfg, sid, 'dest_port', value);
 				uci.set(fwcfg, sid, 'target', 'ACCEPT');
