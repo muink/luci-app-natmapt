@@ -211,31 +211,34 @@ return view.extend({
 		s.addremove = true;
 		s.anonymous = true;
 
+		s.tab('general', _('General Settings'));
+		s.tab('forward', _('Forward Settings'));
+
 		o = s.option(form.Flag, 'enable', _('Enable'));
 		o.default = o.disabled;
 		o.editable = true;
 		o.rmempty = true;
 		o.modalonly = false;
 
-		o = s.option(form.Value, 'interval', _('Keep-alive interval'));
+		o = s.taboption('general', form.Value, 'interval', _('Keep-alive interval'));
 		o.datatype = "and(uinteger, min(1))";
 		o.rmempty = true;
 		o.modalonly = true;
 
-		o = s.option(form.Value, 'stun_server', _('STUN server'));
+		o = s.taboption('general', form.Value, 'stun_server', _('STUN server'));
 		o.datatype = 'hostname';
 		o.rmempty = true;
 		o.modalonly = true;
 
-		o = s.option(form.Value, 'http_server', _('HTTP server'), _('For TCP mode'));
+		o = s.taboption('general', form.Value, 'http_server', _('HTTP server'), _('For TCP mode'));
 		o.datatype = 'hostname';
 		o.rmempty = true;
 		o.modalonly = true;
 
-		o = s.option(form.Value, 'comment', _('Comment'));
+		o = s.taboption('general', form.Value, 'comment', _('Comment'));
 		o.rmempty = true;
 
-		o = s.option(form.ListValue, 'udp_mode', _('Protocol'));
+		o = s.taboption('general', form.ListValue, 'udp_mode', _('Protocol'));
 		o.default = '0';
 		o.value('0', 'TCP');
 		o.value('1', 'UDP');
@@ -245,20 +248,20 @@ return view.extend({
 			return this.vallist[i];
 		};
 
-		o = s.option(form.ListValue, 'family', _('Restrict to address family'));
+		o = s.taboption('general', form.ListValue, 'family', _('Restrict to address family'));
 		o.modalonly = true;
 		o.value('', _('IPv4 and IPv6'));
 		o.value('ipv4', _('IPv4 only'));
 		o.value('ipv6', _('IPv6 only'));
 
-		o = s.option(widgets.NetworkSelect, 'interface', _('Interface'));
+		o = s.taboption('general', widgets.NetworkSelect, 'interface', _('Interface'));
 		o.rmempty = true;
 
-		o = s.option(form.Value, 'port', _('Bind port'));
+		o = s.taboption('general', form.Value, 'port', _('Bind port'));
 		o.datatype = "and(port, min(1))";
 		o.rmempty = false;
 
-		o = s.option(form.Flag, '_forward_mode', _('Forward mode'));
+		o = s.taboption('forward', form.Flag, '_forward_mode', _('Forward mode'));
 		o.modalonly = true;
 		o.ucioption = 'forward_target';
 		o.load = function(section_id) {
@@ -266,12 +269,12 @@ return view.extend({
 		};
 		o.write = function(section_id, formvalue) {};
 
-		o = s.option(form.Value, 'forward_target', _('Forward target'));
+		o = s.taboption('forward', form.Value, 'forward_target', _('Forward target'));
 		o.datatype = 'host';
 		o.modalonly = true;
 		o.depends('_forward_mode', '1');
 
-		o = s.option(form.Value, 'forward_port', _('Forward target port'));
+		o = s.taboption('forward', form.Value, 'forward_port', _('Forward target port'));
 		o.datatype = "and(port, min(1))";
 		o.modalonly = true;
 		o.depends('_forward_mode', '1');
