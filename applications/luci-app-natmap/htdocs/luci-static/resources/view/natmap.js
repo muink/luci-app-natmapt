@@ -19,6 +19,12 @@ var callServiceList = rpc.declare({
 	expect: { '': {} }
 });
 
+var callHostHints = rpc.declare({
+	object: 'luci-rpc',
+	method: 'getHostHints',
+	expect: { '': {} }
+});
+
 function getInstances() {
 	return L.resolveDefault(callServiceList('natmap'), {}).then(function(res) {
 		try {
@@ -54,6 +60,7 @@ return view.extend({
 		network.getWANNetworks(),
 		L.resolveDefault(fs.stat('/usr/bin/stunclient'), null),
 		L.resolveDefault(fs.read(nattest_result_path), null),
+		callHostHints(),
 		uci.load('firewall'),
 		uci.load('natmap')
 	]);
@@ -63,7 +70,8 @@ return view.extend({
 		var status = res[0],
 			wans = res[1],
 			has_stunclient = res[2].path,
-			nattest_result = res[3] ? res[3].trim() : '';
+			nattest_result = res[3] ? res[3].trim() : '',
+			hosts = res[4];
 
 		var m, s, o;
 
@@ -261,23 +269,60 @@ return view.extend({
 		o.datatype = "and(port, min(1))";
 		o.rmempty = false;
 
-		o = s.taboption('forward', form.Flag, '_forward_mode', _('Forward mode'));
+		o = s.taboption('forward', form.Flag, 'forward_mode', _('Forward mode'));
+		o.default = o.disabled;
+		o.rmempty = false;
 		o.modalonly = true;
-		o.ucioption = 'forward_target';
-		o.load = function(section_id) {
-			return this.super('load', section_id) ? '1' : '0';
-		};
-		o.write = function(section_id, formvalue) {};
+
+		o = s.taboption('forward', form.ListValue, 'forward_method', _('Forward method'), _('The DNAT method not support under IPv6'));
+		o.value('dnat', _('Firewall DNAT'));
+		o.value('via', _('Via natmap'));
+		o.default = 'via';
+		o.rmempty = false;
+		o.retain = true;
+		o.depends('forward_mode', '1');
+		o.modalonly = true;
+
+		o = s.taboption('forward', form.Flag, 'natloopback', _('NAT loopback'));
+		o.default = o.enabled;
+		o.rmempty = true;
+		o.retain = true;
+		o.depends('forward_method', 'dnat');
+		o.modalonly = true;
 
 		o = s.taboption('forward', form.Value, 'forward_target', _('Forward target'));
 		o.datatype = 'host';
+		o.value('locallan', _('(This device default Lan)'));
+		o.value('localwan', _('(This device default Wan)'));
+		o.default = 'locallan';
+		o.rmempty = false;
+		o.retain = true;
+		o.depends('forward_mode', '1');
 		o.modalonly = true;
-		o.depends('_forward_mode', '1');
+
+		var ipaddrs = {}, ip6addrs = {};
+		Object.keys(hosts).forEach(function(mac) {
+			var addrs = L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4),
+				addrs6 = L.toArray(hosts[mac].ip6addrs || hosts[mac].ipv6);
+
+			for (var i = 0; i < addrs.length; i++)
+				ipaddrs[addrs[i]] = hosts[mac].name || mac;
+			for (var i = 0; i < addrs6.length; i++)
+				ip6addrs[addrs6[i]] = hosts[mac].name || mac;
+		});
+		L.sortedKeys(ipaddrs, null, 'addr').forEach(function(ipv4) {
+			o.value(ipv4, ipaddrs[ipv4] ? '%s (%s)'.format(ipv4, ipaddrs[ipv4]) : ipv4);
+		});
+		L.sortedKeys(ip6addrs, null, 'addr').forEach(function(ipv6) {
+			o.value(ipv6, ip6addrs[ipv6] ? '%s (%s)'.format(ipv6, ip6addrs[ipv6]) : ipv6);
+		});
 
 		o = s.taboption('forward', form.Value, 'forward_port', _('Forward target port'));
 		o.datatype = "and(port, min(1))";
+		o.rmempty = false;
+		o.retain = true;
+		o.depends('forward_mode', '1');
 		o.modalonly = true;
-		o.depends('_forward_mode', '1');
 
 		o = s.option(form.Value, 'notify_script', _('Notify script'));
 		o.datatype = 'file';
