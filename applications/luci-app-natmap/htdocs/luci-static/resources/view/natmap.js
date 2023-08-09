@@ -257,12 +257,20 @@ return view.extend({
 		};
 
 		o = s.taboption('general', form.ListValue, 'family', _('Restrict to address family'));
-		o.modalonly = true;
-		o.value('', _('IPv4 and IPv6'));
-		o.value('ipv4', _('IPv4 only'));
-		o.value('ipv6', _('IPv6 only'));
+		o.default = 'ipv4';
+		o.value('ipv4', _('IPv4'));
+		o.value('ipv6', _('IPv6'));
+		o.textvalue = function(section_id) {
+			var cval = this.cfgvalue(section_id);
+			var i = this.keylist.indexOf(cval);
+			return this.vallist[i];
+		};
 
-		o = s.taboption('general', widgets.NetworkSelect, 'interface', _('Interface'));
+		o = s.taboption('general', widgets.DeviceSelect, 'bind_ifname', _('Interface'));
+		o.multiple = false;
+		o.noaliases = true;
+		o.nobridges = true;
+		o.nocreate = false;
 		o.rmempty = true;
 
 		o = s.taboption('general', form.Value, 'port', _('Bind port'));
@@ -272,7 +280,6 @@ return view.extend({
 		o = s.taboption('forward', form.Flag, 'forward_mode', _('Forward mode'));
 		o.default = o.disabled;
 		o.rmempty = false;
-		o.modalonly = true;
 
 		o = s.taboption('forward', form.ListValue, 'forward_method', _('Forward method'), _('The DNAT method not support under IPv6'));
 		o.value('dnat', _('Firewall DNAT'));
@@ -291,10 +298,10 @@ return view.extend({
 		o.modalonly = true;
 
 		o = s.taboption('forward', form.Value, 'forward_target', _('Forward target'));
-		o.datatype = 'host';
-		o.value('locallan', _('(This device default Lan)'));
-		o.value('localwan', _('(This device default Wan)'));
-		o.default = 'locallan';
+		o.datatype = 'ipaddr(1)';
+		o.value('127.0.0.1', '127.0.0.1/::1 ' + _('(This device default Lan)'));
+		o.value('0.0.0.0', '0.0.0.0/:: ' + _('(This device default Wan)'));
+		o.default = '127.0.0.1';
 		o.rmempty = false;
 		o.retain = true;
 		o.depends('forward_mode', '1');
