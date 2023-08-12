@@ -305,7 +305,6 @@ return view.extend({
 		o.rmempty = false;
 		o.retain = true;
 		o.depends('forward_mode', '1');
-		o.modalonly = true;
 
 		var ipaddrs = {}, ip6addrs = {};
 		Object.keys(hosts).forEach(function(mac) {
@@ -324,12 +323,17 @@ return view.extend({
 			o.value(ipv6, ip6addrs[ipv6] ? '%s (%s)'.format(ipv6, ip6addrs[ipv6]) : ipv6);
 		});
 
+		o.textvalue = function(section_id) {
+			var cval = this.cfgvalue(section_id);
+			var i = this.keylist.indexOf(cval);
+			return this.vallist[i];
+		};
+
 		o = s.taboption('forward', form.Value, 'forward_port', _('Forward target port'));
 		o.datatype = "and(port, min(1))";
 		o.rmempty = false;
 		o.retain = true;
 		o.depends('forward_mode', '1');
-		o.modalonly = true;
 
 		o = s.option(form.Value, 'notify_script', _('Notify script'));
 		o.datatype = 'file';
