@@ -80,6 +80,18 @@ return view.extend({
 		s = m.section(form.TypedSection, 'global');
 		s.anonymous = true;
 
+		o = s.option(form.Button, '_reload', _('Reload'));
+		o.inputtitle = _('Reload');
+		o.inputstyle = 'apply';
+		o.onclick = function() {
+			window.setTimeout(function() {
+				window.location = window.location.href.split('#')[0];
+			}, L.env.apply_display * 500);
+
+			return fs.exec('/etc/init.d/natmap', ['reload'])
+				.catch(function(e) { ui.addNotification(null, E('p', e.message), 'error') });
+		};
+
 		o = s.option(form.Flag, 'enable', _('Enable'));
 		o.default = o.disabled;
 		o.rmempty = false;
