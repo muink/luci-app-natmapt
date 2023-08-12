@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-05 00:43+0000\n"
+"PO-Revision-Date: 2023-08-12 12:23+0000\n"
 "Last-Translator: Anya Lin <muink@users.noreply.github.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "openwrt/luciapplicationsnatmap/zh_Hant/>\n"
@@ -10,83 +10,191 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.15.1-dev\n"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:93
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:314
+msgid "(This device default Lan)"
+msgstr "(本裝置默認 LAN)"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:315
+msgid "(This device default Wan)"
+msgstr "(本裝置默認 WAN)"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:288
 msgid "Bind port"
 msgstr "綁定埠"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:201
+msgid "Check"
+msgstr "檢查"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:200
+msgid "Check NAT Behavior"
+msgstr "檢查 NAT 行為"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:258
+msgid "Comment"
+msgstr "備註"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:99
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:103
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:107
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:111
+msgid "Default"
+msgstr "默認"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:95
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:237
 msgid "Enable"
 msgstr "啟用"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:124
+msgid "Expecting: non-empty value"
+msgstr ""
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:354
 msgid "External IP"
 msgstr "外部 IP"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:126
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:361
 msgid "External Port"
 msgstr "外部通訊埠"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:297
+msgid "Firewall DNAT"
+msgstr "防火牆 DNAT"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:253
 msgid "For TCP mode"
 msgstr "用於 TCP 模式"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:97
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:235
+msgid "Forward Settings"
+msgstr "轉發設定"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:296
+msgid "Forward method"
+msgstr "轉發方法"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:292
 msgid "Forward mode"
 msgstr "轉發模式"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:312
 msgid "Forward target"
 msgstr "轉發目標"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:110
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:344
 msgid "Forward target port"
 msgstr "轉發目標埠"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:234
+msgid "General Settings"
+msgstr "一般設定"
 
 #: applications/luci-app-natmap/root/usr/share/rpcd/acl.d/luci-app-natmap.json:3
 msgid "Grant access to LuCI app natmap"
 msgstr "授予訪問 LuCI 應用 natmap 的權限"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:107
+msgid "HTTP keep-alive"
+msgstr ""
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:253
 msgid "HTTP server"
 msgstr "HTTP 伺服器"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:71
-msgid "IPv4 and IPv6"
-msgstr "IPv4 和 IPv6"
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:273
+msgid "IPv4"
+msgstr ""
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:72
-msgid "IPv4 only"
-msgstr "僅 IPv4"
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:274
+msgid "IPv6"
+msgstr ""
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:73
-msgid "IPv6 only"
-msgstr "僅 IPv6"
-
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:75
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:281
 msgid "Interface"
 msgstr "介面"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:243
 msgid "Keep-alive interval"
 msgstr "Keep-alive 間隔"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:305
+msgid "NAT loopback"
+msgstr "NAT 環回"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:116
+msgid "NATBehavior-Test port open on"
+msgstr "NATBehavior-Test 通訊埠打開於"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
 #: applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json:3
 msgid "NATMap"
 msgstr "NATMap"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:115
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:350
 msgid "Notify script"
 msgstr "通知腳本"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:59
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:116
+msgid ""
+"Please check <a href=\"%s\"><b>Firewall Rules</b></a> to avoid port "
+"conflicts.</br>"
+msgstr "請檢查<a href=\"%s\"><b>防火牆規則</b></a>以避免端口衝突"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:261
 msgid "Protocol"
 msgstr "協議"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:69
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:83
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:84
+msgid "Reload"
+msgstr "重新載入"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:271
 msgid "Restrict to address family"
 msgstr "限制到位址群"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:248
 msgid "STUN server"
 msgstr "STUN 伺服器"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:99
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:103
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:107
+msgid "Server"
+msgstr "伺服器"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:99
+msgid "TCP STUN"
+msgstr ""
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:296
+msgid "The DNAT method not support under IPv6"
+msgstr "DNAT 方法不支援在 IPv6 下使用"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:133
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:142
+msgid "This port is already used"
+msgstr "該端口已被使用"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:204
+msgid ""
+"To check NAT Behavior you need to install <a href=\"%s\"><b>stuntman-client</"
+"b></a> first"
+msgstr "檢查 NAT 行為需要先安裝 <a href=\"%s\"><b>stuntman-client</b></a>"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:103
+msgid "UDP STUN"
+msgstr ""
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:298
+msgid "Via natmap"
+msgstr ""
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:111
+msgid "keep-alive interval (seconds)"
+msgstr "keep-alive 間隔 (秒)"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:118
+msgid "luci check may not detect all conflicts."
+msgstr "luci 檢查可能無法檢測到所有衝突"
