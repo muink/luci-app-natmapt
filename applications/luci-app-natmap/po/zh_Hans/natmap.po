@@ -10,6 +10,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.18-dev\n"
 
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:344
+msgid "(Only via mode is supported currently)"
+msgstr " (目前仅支持 via 方法)"
+
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:314
 msgid "(This device default Lan)"
 msgstr "(此装置默认 LAN)"
@@ -50,11 +54,11 @@ msgstr "启用"
 msgid "Expecting: non-empty value"
 msgstr ""
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:354
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:360
 msgid "External IP"
 msgstr "外部 IP"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:361
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:367
 msgid "External Port"
 msgstr "外部端口"
 
@@ -131,7 +135,7 @@ msgstr "NATBehavior-Test 端口打开于"
 msgid "NATMap"
 msgstr "NATMap"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:350
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:356
 msgid "Notify script"
 msgstr "通知脚本"
 
@@ -163,6 +167,10 @@ msgstr "STUN 服务器"
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:107
 msgid "Server"
 msgstr "服务器"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:344
+msgid "Set 0 will follow Public port"
+msgstr "设为 0 将跟随公共端口"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:99
 msgid "TCP STUN"

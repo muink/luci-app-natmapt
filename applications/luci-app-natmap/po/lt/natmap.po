@@ -12,6 +12,10 @@ msgstr ""
 "1 : 2);\n"
 "X-Generator: Weblate 5.0-dev\n"
 
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:344
+msgid "(Only via mode is supported currently)"
+msgstr ""
+
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:314
 msgid "(This device default Lan)"
 msgstr ""
@@ -52,11 +56,11 @@ msgstr "Įjungti"
 msgid "Expecting: non-empty value"
 msgstr ""
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:354
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:360
 msgid "External IP"
 msgstr "Išorinis „IP“"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:361
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:367
 msgid "External Port"
 msgstr "Išorinis prievadas"
 
@@ -133,7 +137,7 @@ msgstr ""
 msgid "NATMap"
 msgstr "„NATMap“"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:350
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:356
 msgid "Notify script"
 msgstr "Įspėti skriptą"
 
@@ -164,6 +168,10 @@ msgstr "„STUN“ serveris"
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:103
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:107
 msgid "Server"
+msgstr ""
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:344
+msgid "Set 0 will follow Public port"
 msgstr ""
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:99
