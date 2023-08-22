@@ -11,6 +11,7 @@ var conf = 'natmap';
 var natmap_instance = 'natmap';
 var nattest_fw_rulename = 'natmap-natest';
 var nattest_result_path = '/tmp/natmap-natBehavior';
+var etc_path = '/etc/natmap';
 
 var callServiceList = rpc.declare({
 	object: 'service',
@@ -61,6 +62,7 @@ return view.extend({
 		L.resolveDefault(fs.stat('/usr/bin/stunclient'), null),
 		L.resolveDefault(fs.read(nattest_result_path), null),
 		callHostHints(),
+		L.resolveDefault(fs.list(etc_path + '/client'), []),
 		uci.load('firewall'),
 		uci.load('natmap')
 	]);
@@ -71,7 +73,8 @@ return view.extend({
 			wans = res[1],
 			has_stunclient = res[2].path,
 			nattest_result = res[3] ? res[3].trim() : '',
-			hosts = res[4];
+			hosts = res[4],
+			scripts_client = res[5];
 
 		var m, s, o;
 
@@ -366,6 +369,54 @@ return view.extend({
 		o.rmempty = false;
 		o.retain = true;
 		o.depends('forward', '1');
+
+		o = s.taboption('forward', form.Flag, 'refresh', _('Refresh client listen port'));
+		o.default = o.enabled;
+		o.rmempty = false;
+		o.retain = true;
+		o.depends('forward_port', '0');
+		o.modalonly = true;
+
+		o = s.taboption('forward', form.ListValue, 'clt_script', _('Refresh Scripts'));
+		o.datatype = 'file';
+		o.rmempty = false;
+		o.retain = true;
+		o.depends('refresh', '1');
+		o.modalonly = true;
+
+		if (scripts_client.length) {
+			for (var i = 0; i < scripts_client.length; i++)
+				o.value(etc_path + '/client/' + scripts_client[i].name, scripts_client[i].name);
+		};
+
+		o = s.taboption('forward', form.ListValue, 'clt_scheme', _('URI Scheme'));
+		o.value('http', 'HTTP');
+		o.value('https', 'HTTPS');
+		o.default = 'http';
+		o.rmempty = false;
+		o.retain = true;
+		o.depends('refresh', '1');
+		o.modalonly = true;
+
+		o = s.taboption('forward', form.Value, 'clt_web_port', _('Web UI Port'));
+		o.datatype = "and(port, min(1))";
+		o.default = '8080';
+		o.rmempty = false;
+		o.retain = true;
+		o.depends('refresh', '1');
+		o.modalonly = true;
+
+		o = s.taboption('forward', form.Value, 'clt_username', _('Username'));
+		o.rmempty = true;
+		o.retain = true;
+		o.depends('refresh', '1');
+		o.modalonly = true;
+
+		o = s.taboption('forward', form.Value, 'clt_password', _('Password'));
+		o.password = true;
+		o.rmempty = true;
+		o.depends('refresh', '1');
+		o.modalonly = true;
 
 		o = s.taboption('custom', form.Value, 'custom_script', _('Custom Script'));
 		o.datatype = 'file';

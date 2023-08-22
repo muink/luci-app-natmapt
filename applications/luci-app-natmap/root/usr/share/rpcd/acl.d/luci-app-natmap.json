@@ -3,6 +3,7 @@
 		"description": "Grant access to LuCI app natmap",
 		"read": {
 			"file": {
+				"/etc/natmap/client": [ "list" ],
 				"/etc/init.d/natmap reload": [ "exec" ],
 				"/var/run/natmap/*": [ "read" ],
 				"/tmp/natmap-natBehavior": [ "read" ],
