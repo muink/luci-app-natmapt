@@ -10,10 +10,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.16-dev\n"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:344
-msgid "(Only via mode is supported currently)"
-msgstr ""
-
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:314
 msgid "(This device default Lan)"
 msgstr ""
@@ -54,11 +50,11 @@ msgstr "Activar"
 msgid "Expecting: non-empty value"
 msgstr ""
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:360
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:354
 msgid "External IP"
 msgstr "IP externa"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:367
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:361
 msgid "External Port"
 msgstr "Puerto externo"
 
@@ -135,7 +131,7 @@ msgstr ""
 msgid "NATMap"
 msgstr "NATMap"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:356
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:350
 msgid "Notify script"
 msgstr "Script de notificación"
 

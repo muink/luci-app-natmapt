@@ -341,17 +341,11 @@ return view.extend({
 			return this.vallist[i];
 		};
 
-		o = s.taboption('forward', form.Value, 'forward_port', _('Forward target port'), _('Set 0 will follow Public port') + _(' (Only via mode is supported currently)'));
+		o = s.taboption('forward', form.Value, 'forward_port', _('Forward target port'), _('Set 0 will follow Public port'));
 		o.datatype = 'port';
 		o.rmempty = false;
 		o.retain = true;
 		o.depends('forward_mode', '1');
-		o.write = function(section, value) {
-			uci.set(conf, section, 'forward_port', value);
-			if ( value == '0' ) {
-				uci.set(conf, section, 'forward_method', 'via');
-			}
-		};
 
 		o = s.option(form.Value, 'notify_script', _('Notify script'));
 		o.datatype = 'file';

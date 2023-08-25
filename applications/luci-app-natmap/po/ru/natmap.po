@@ -11,10 +11,6 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.17-dev\n"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:344
-msgid "(Only via mode is supported currently)"
-msgstr ""
-
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:314
 msgid "(This device default Lan)"
 msgstr ""
@@ -55,11 +51,11 @@ msgstr "Включить"
 msgid "Expecting: non-empty value"
 msgstr ""
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:360
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:354
 msgid "External IP"
 msgstr "Внешний IP"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:367
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:361
 msgid "External Port"
 msgstr "Внешний порт"
 
@@ -136,7 +132,7 @@ msgstr ""
 msgid "NATMap"
 msgstr "NATMap"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:356
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:350
 msgid "Notify script"
 msgstr "Скрипт уведомления"
 
