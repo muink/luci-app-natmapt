@@ -289,24 +289,24 @@ return view.extend({
 		o.datatype = "and(port, min(1))";
 		o.rmempty = false;
 
-		o = s.taboption('forward', form.Flag, 'forward_mode', _('Forward mode'));
+		o = s.taboption('forward', form.Flag, 'forward', _('Forward mode'));
 		o.default = o.disabled;
 		o.rmempty = false;
 
-		o = s.taboption('forward', form.ListValue, 'forward_method', _('Forward method'), _('The DNAT method not support under IPv6'));
+		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward method'), _('The DNAT method not support under IPv6'));
 		o.value('dnat', _('Firewall DNAT'));
 		o.value('via', _('Via natmap'));
 		o.default = 'via';
 		o.rmempty = false;
 		o.retain = true;
-		o.depends('forward_mode', '1');
+		o.depends('forward', '1');
 		o.modalonly = true;
 
 		o = s.taboption('forward', form.Flag, 'natloopback', _('NAT loopback'));
 		o.default = o.enabled;
 		o.rmempty = true;
 		o.retain = true;
-		o.depends('forward_method', 'dnat');
+		o.depends('forward_mode', 'dnat');
 		o.modalonly = true;
 
 		o = s.taboption('forward', form.Value, 'forward_target', _('Forward target'));
@@ -316,7 +316,7 @@ return view.extend({
 		o.default = '127.0.0.1';
 		o.rmempty = false;
 		o.retain = true;
-		o.depends('forward_mode', '1');
+		o.depends('forward', '1');
 
 		var ipaddrs = {}, ip6addrs = {};
 		Object.keys(hosts).forEach(function(mac) {
@@ -345,7 +345,7 @@ return view.extend({
 		o.datatype = 'port';
 		o.rmempty = false;
 		o.retain = true;
-		o.depends('forward_mode', '1');
+		o.depends('forward', '1');
 
 		o = s.option(form.Value, 'notify_script', _('Notify script'));
 		o.datatype = 'file';
