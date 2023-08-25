@@ -292,6 +292,25 @@ return view.extend({
 		o = s.taboption('forward', form.Flag, 'forward', _('Forward mode'));
 		o.default = o.disabled;
 		o.rmempty = false;
+		o.textvalue = function(section_id) {
+			var cval = this.cfgvalue(section_id);
+			if (cval == null)
+				cval = this.default;
+			var mode = L.bind(function() {
+				let cval = this.cfgvalue(section_id);
+				if (cval == null)
+					cval = this.default;
+				let i = this.keylist.indexOf(cval);
+				return [this.vallist[i], cval];
+			}, s.getOption('forward_mode'))
+			var loopback = L.bind(function() {
+				let cval = this.cfgvalue(section_id);
+				if (cval == null)
+					cval = this.default;
+				return (cval == this.enabled) ? ' L' : '';
+			}, s.getOption('natloopback'))
+			return (cval == this.enabled) ? mode()[0] + (mode()[1] === 'dnat' ? loopback() : '') : _('No');
+		};
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward method'), _('The DNAT method not support under IPv6'));
 		o.value('dnat', _('Firewall DNAT'));
