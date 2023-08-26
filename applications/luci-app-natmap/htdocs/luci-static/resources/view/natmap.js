@@ -233,6 +233,7 @@ return view.extend({
 
 		s.tab('general', _('General Settings'));
 		s.tab('forward', _('Forward Settings'));
+		s.tab('custom', _('Custom Script'));
 
 		o = s.option(form.Flag, 'enable', _('Enable'));
 		o.default = o.disabled;
@@ -366,7 +367,7 @@ return view.extend({
 		o.retain = true;
 		o.depends('forward', '1');
 
-		o = s.option(form.Value, 'notify_script', _('Notify script'));
+		o = s.taboption('custom', form.Value, 'custom_script', _('Custom Script'));
 		o.datatype = 'file';
 		o.modalonly = true;
 
