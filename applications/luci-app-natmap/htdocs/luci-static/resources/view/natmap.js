@@ -369,6 +369,25 @@ return view.extend({
 		o.rmempty = false;
 		o.retain = true;
 		o.depends('forward', '1');
+		o.textvalue = function(section_id) {
+			var cval = this.cfgvalue(section_id);
+			if (cval == null)
+				cval = this.default;
+			var refresh = L.bind(function() {
+				let cval = this.cfgvalue(section_id);
+				if (cval == null)
+					cval = this.default;
+				return (cval == this.enabled) ? true : false;
+			}, s.getOption('refresh'))
+			var cltname = L.bind(function() {
+				let cval = this.cfgvalue(section_id);
+				if (cval == null)
+					cval = this.default;
+				let i = this.keylist.indexOf(cval);
+				return this.vallist[i];
+			}, s.getOption('clt_script'))
+			return (cval == '0' && refresh()) ? cltname() : cval;
+		};
 
 		o = s.taboption('forward', form.Flag, 'refresh', _('Refresh client listen port'));
 		o.default = o.enabled;
