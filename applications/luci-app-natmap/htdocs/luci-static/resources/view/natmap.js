@@ -361,7 +361,13 @@ return view.extend({
 		o.textvalue = function(section_id) {
 			var cval = this.cfgvalue(section_id);
 			var i = this.keylist.indexOf(cval);
-			return this.vallist[i];
+			var enforward = L.bind(function() {
+				let cval = this.cfgvalue(section_id);
+				if (cval == null)
+					cval = this.default;
+				return (cval == this.enabled) ? true : false;
+			}, s.getOption('forward'))
+			return enforward() ? this.vallist[i] : _('No');
 		};
 
 		o = s.taboption('forward', form.Value, 'forward_port', _('Forward target port'), _('Set 0 will follow Public port'));
@@ -373,6 +379,12 @@ return view.extend({
 			var cval = this.cfgvalue(section_id);
 			if (cval == null)
 				cval = this.default;
+			var enforward = L.bind(function() {
+				let cval = this.cfgvalue(section_id);
+				if (cval == null)
+					cval = this.default;
+				return (cval == this.enabled) ? true : false;
+			}, s.getOption('forward'))
 			var refresh = L.bind(function() {
 				let cval = this.cfgvalue(section_id);
 				if (cval == null)
@@ -386,7 +398,7 @@ return view.extend({
 				let i = this.keylist.indexOf(cval);
 				return this.vallist[i];
 			}, s.getOption('clt_script'))
-			return (cval == '0' && refresh()) ? cltname() : cval;
+			return enforward() ? ((cval == '0' && refresh()) ? cltname() : cval) : _('No');
 		};
 
 		o = s.taboption('forward', form.Flag, 'refresh', _('Refresh client listen port'));
