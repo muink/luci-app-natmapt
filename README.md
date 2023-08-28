@@ -50,7 +50,7 @@ popd
 # Select the package LuCI -> Applications -> luci-app-natmapt
 make menuconfig
 # Start compiling
-make package/luci-app-natmapt/applications/luci-app-natmap/compile V=99
+make package/luci-app-natmapt/compile V=99
 ```
 
 [NATMap]: https://github.com/heiher/natmap
