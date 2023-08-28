@@ -4,6 +4,8 @@
 		"read": {
 			"file": {
 				"/etc/natmap/client": [ "list" ],
+				"/etc/natmap/notify": [ "list" ],
+				"/etc/natmap/ddns": [ "list" ],
 				"/etc/init.d/natmap reload": [ "exec" ],
 				"/var/run/natmap/*": [ "read" ],
 				"/tmp/natmap-natBehavior": [ "read" ],
@@ -12,10 +14,10 @@
 			"ubus": {
 				"service": [ "list" ]
 			},
-			"uci": ["firewall", "natmap"]
+			"uci": ["natmap"]
 		},
 		"write": {
-			"uci": ["firewall", "natmap"]
+			"uci": ["natmap"]
 		}
 	}
 }

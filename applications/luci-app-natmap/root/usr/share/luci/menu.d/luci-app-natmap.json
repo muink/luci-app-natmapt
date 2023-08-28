@@ -1,6 +1,7 @@
 {
-	"admin/services/natmap": {
+	"admin/network/natmap": {
 		"title": "NATMap",
+		"order": 70,
 		"action": {
 			"type": "view",
 			"path": "natmap"
