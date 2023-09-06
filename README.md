@@ -3,7 +3,7 @@ TCP/UDP port mapping for full cone NAT
 
 > [NATMap][] project is used to establish a TCP/UDP port mapping from ISP NAT public address to local private address. If all layers of NAT are full cones (NAT-1), any host can access internal services through the mapped public address.
 
-### Features included outside of NATMap
+## Features included outside of NATMap
 - [x] Automatically configure the Firewall
 - [x] Transparent Port forward (Forward port = 0)
 - [x] Refresh the listen port of the BT Client (Forward port = 0)
@@ -13,13 +13,17 @@ TCP/UDP port mapping for full cone NAT
 - [ ] SRV Record update script
 - [ ] HTTPS Record update script
 
-### Depends
+## Screenshots
+
+![0](.img/0.png "0")  
+
+## Depends
 
 1. [natmapt][]
 2. coreutils-timeout
 3. [stuntman-client][]
 
-### How to install
+## How to install
 
 1. Go to [here](https://fantastic-packages.github.io/packages/)
 2. Download the latest version of ipk
@@ -28,9 +32,9 @@ TCP/UDP port mapping for full cone NAT
 5. Reboot if the app is not automatically added in page
 6. Goto **Network --> NATMap**
 
-### Build
+## Build
 
-- Compile from OpenWrt/LEDE SDK
+Compile from OpenWrt/LEDE SDK
 
 ```
 # Take the x86_64 platform as an example
@@ -57,6 +61,6 @@ make package/luci-app-natmapt/compile V=99
 [natmapt]: https://github.com/muink/openwrt-natmapt
 [stuntman-client]: https://github.com/muink/openwrt-stuntman
 
-### License
+## License
 
 This project is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
