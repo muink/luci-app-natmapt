@@ -449,10 +449,6 @@ return view.extend({
 		o.depends('refresh', '1');
 		o.modalonly = true;
 
-		o = s.taboption('custom', form.Value, 'custom_script', _('Custom Script'));
-		o.datatype = 'file';
-		o.modalonly = true;
-
 		o = s.option(form.DummyValue, '_external_ip', _('External IP'));
 		o.modalonly = false;
 		o.textvalue = function(section_id) {
@@ -466,6 +462,10 @@ return view.extend({
 			var s = status[section_id];
 			if (s) return s.port;
 		};
+
+		o = s.taboption('custom', form.Value, 'custom_script', _('Custom Script'));
+		o.datatype = 'file';
+		o.modalonly = true;
 
 		return m.render();
 	}
