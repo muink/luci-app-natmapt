@@ -57,6 +57,11 @@ make menuconfig
 make package/luci-app-natmapt/compile V=99
 ```
 
+## Collaborators
+
+[Richard Yu](https://github.com/ysc3839)  
+[Anya Lin](https://github.com/muink)  
+
 [NATMap]: https://github.com/heiher/natmap
 [natmapt]: https://github.com/muink/openwrt-natmapt
 [stuntman-client]: https://github.com/muink/openwrt-stuntman
