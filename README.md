@@ -8,7 +8,7 @@ TCP/UDP port mapping for full cone NAT
 - [x] Automatically configure the Firewall
 - [x] Transparent Port forward (Forward port = 0)
 - [x] Refresh the listen port of the BT Client (Forward port = 0)
-- [ ] Port update notify script
+- [x] Port update notify script
 - [ ] A Record update script
 - [ ] AAAA Record update script
 - [ ] SRV Record update script

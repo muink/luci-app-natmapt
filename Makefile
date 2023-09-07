@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_NAME:=luci-app-natmapt
-PKG_VERSION:=20230828
+PKG_VERSION:=20230907
 
 LUCI_TITLE:=LuCI Support for natmap
 LUCI_PKGARCH:=all

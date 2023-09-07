@@ -63,6 +63,7 @@ return view.extend({
 		L.resolveDefault(fs.read(nattest_result_path), null),
 		callHostHints(),
 		L.resolveDefault(fs.list(etc_path + '/client'), []),
+		L.resolveDefault(fs.list(etc_path + '/notify'), []),
 		uci.load('firewall'),
 		uci.load('natmap')
 	]);
@@ -74,7 +75,8 @@ return view.extend({
 			has_stunclient = res[2] ? res[2].path : null,
 			nattest_result = res[3] ? res[3].trim() : '',
 			hosts = res[4],
-			scripts_client = res[5] ? res[5] : [];
+			scripts_client = res[5] ? res[5] : [],
+			scripts_notify = res[6] ? res[6] : [];
 
 		var m, s, o;
 
@@ -236,6 +238,7 @@ return view.extend({
 
 		s.tab('general', _('General Settings'));
 		s.tab('forward', _('Forward Settings'));
+		s.tab('notify', _('Notify Scripts'));
 		s.tab('custom', _('Custom Script'));
 
 		o = s.option(form.Flag, 'enable', _('Enable'));
@@ -462,6 +465,42 @@ return view.extend({
 			var s = status[section_id];
 			if (s) return s.port;
 		};
+
+		o = s.taboption('notify', form.Flag, 'notify_enable', _('EnNotify'));
+		o.default = o.disabled;
+		o.editable = true;
+		o.rmempty = true;
+
+		o = s.taboption('notify', form.ListValue, 'notify_script', _('Notify Scripts'));
+		o.datatype = 'file';
+		o.rmempty = false;
+		o.modalonly = true;
+
+		if (scripts_notify.length) {
+			for (var i = 0; i < scripts_notify.length; i++)
+				o.value(etc_path + '/notify/' + scripts_notify[i].name, scripts_notify[i].name);
+		};
+
+		o = s.taboption('notify', form.DynamicList, 'notify_tokens', _('Tokens'),
+			_('The KEY required by the script above. ' +
+				'See <a href="%s" target="_blank">%s*</a> for the format of KEY required by each script. ' +
+				'Add multiple entries here in KEY=VAL shell variable format to supply multiple KEY variables.')
+			.format('https://github.com/muink/openwrt-natmapt/tree/master/files/notify/'));
+		o.datatype = 'list(string)';
+		o.placeholder = 'KEY=VAL';
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.taboption('notify', form.Value, 'notify_custom_domain', _('Private API Domain'));
+		o.datatype = 'hostname';
+		o.placeholder = 'api.example.com';
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.taboption('notify', form.Value, 'notify_text', _('Text content'));
+		o.placeholder = 'NATMap: [${protocol^^}] $inner_ip:$inner_port -> $ip:$port';
+		o.rmempty = true;
+		o.modalonly = true;
 
 		o = s.taboption('custom', form.Value, 'custom_script', _('Custom Script'));
 		o.datatype = 'file';
