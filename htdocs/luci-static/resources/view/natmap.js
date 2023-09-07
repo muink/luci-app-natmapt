@@ -71,10 +71,10 @@ return view.extend({
 	render: function(res) {
 		var status = res[0],
 			wans = res[1],
-			has_stunclient = res[2].path,
+			has_stunclient = res[2] ? res[2].path : null,
 			nattest_result = res[3] ? res[3].trim() : '',
 			hosts = res[4],
-			scripts_client = res[5];
+			scripts_client = res[5] ? res[5] : [];
 
 		var m, s, o;
 
