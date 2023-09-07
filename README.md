@@ -4,6 +4,7 @@ TCP/UDP port mapping for full cone NAT
 > [NATMap][] project is used to establish a TCP/UDP port mapping from ISP NAT public address to local private address. If all layers of NAT are full cones (NAT-1), any host can access internal services through the mapped public address.
 
 ## Features included outside of NATMap
+- [x] NAT Type Test
 - [x] Automatically configure the Firewall
 - [x] Transparent Port forward (Forward port = 0)
 - [x] Refresh the listen port of the BT Client (Forward port = 0)
