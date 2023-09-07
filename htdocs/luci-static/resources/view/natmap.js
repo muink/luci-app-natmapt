@@ -64,6 +64,7 @@ return view.extend({
 		callHostHints(),
 		L.resolveDefault(fs.list(etc_path + '/client'), []),
 		L.resolveDefault(fs.list(etc_path + '/notify'), []),
+		L.resolveDefault(fs.list(etc_path + '/ddns'), []),
 		uci.load('firewall'),
 		uci.load('natmap')
 	]);
@@ -76,7 +77,8 @@ return view.extend({
 			nattest_result = res[3] ? res[3].trim() : '',
 			hosts = res[4],
 			scripts_client = res[5] ? res[5] : [],
-			scripts_notify = res[6] ? res[6] : [];
+			scripts_notify = res[6] ? res[6] : [],
+			scripts_ddns = res[7] ? res[7] : [];
 
 		var m, s, o;
 
@@ -239,6 +241,7 @@ return view.extend({
 		s.tab('general', _('General Settings'));
 		s.tab('forward', _('Forward Settings'));
 		s.tab('notify', _('Notify Scripts'));
+		s.tab('ddns', _('DDNS Scripts'));
 		s.tab('custom', _('Custom Script'));
 
 		o = s.option(form.Flag, 'enable', _('Enable'));
@@ -515,6 +518,145 @@ return view.extend({
 		o = s.taboption('notify', form.Value, 'notify_text', _('Text content'));
 		o.placeholder = 'NATMap: <comment>: [<protocol>] <inner_ip>:<inner_port> -> <ip>:<port>';
 		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Flag, 'ddns_enable', _('EnDDNS'));
+		o.default = o.disabled;
+		o.editable = true;
+		o.rmempty = true;
+
+		o = s.taboption('ddns', form.ListValue, 'ddns_script', _('DDNS Scripts'));
+		o.datatype = 'file';
+		o.rmempty = false;
+		o.modalonly = true;
+
+		if (scripts_ddns.length) {
+			for (var i = 0; i < scripts_ddns.length; i++)
+				o.value(etc_path + '/ddns/' + scripts_ddns[i].name, scripts_ddns[i].name);
+		};
+
+		o = s.taboption('ddns', form.DynamicList, 'ddns_tokens', _('Tokens'),
+			_('The KEY required by the script above. ' +
+				'See <a href="%s" target="_blank">%s*</a> for the format of KEY required by each script. ' +
+				'Add multiple entries here in KEY=VAL shell variable format to supply multiple KEY variables.')
+			.format('https://github.com/muink/openwrt-natmapt/tree/master/files/ddns/'));
+		o.datatype = 'list(string)';
+		o.placeholder = 'KEY=VAL';
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_a', _('A Record ') + _('FQDN'));
+		o.datatype = 'hostname';
+		o.placeholder = 'www.example.com';
+		o.rmempty = true;
+		o.depends('family', 'ipv4');
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_aaaa', _('AAAA Record ') + _('FQDN'));
+		o.datatype = 'hostname';
+		o.placeholder = 'ipv6.example.com';
+		o.rmempty = true;
+		o.depends('family', 'ipv6');
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.DummyValue, '_ddns_srv_dump', _('SRV Record'));
+		o.rawhtml = false;
+		o.cfgvalue = function(section_id) {
+			let fqdn = uci.get(conf, section_id, 'ddns_srv');
+			let serv = uci.get(conf, section_id, 'ddns_srv_serv');
+			let prot = uci.get(conf, section_id, 'ddns_srv_proto');
+			let targ = uci.get(conf, section_id, 'ddns_srv_target') || fqdn;
+			let prio = uci.get(conf, section_id, 'ddns_srv_priority');
+			let weig = uci.get(conf, section_id, 'ddns_srv_weight');
+
+			if ( fqdn && serv && prot && targ && prio && weig )
+				return '_' + serv + '._' + prot + '.' + fqdn + '. <TTL> IN SRV　' + prio + ' ' + weig + ' <port> ' + targ + '.';
+		};
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_srv', _('FQDN'));
+		o.datatype = 'hostname';
+		o.placeholder = 'mc.example.com';
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_srv_serv', _('Service'));
+		o.value('minecraft');
+		o.value('factorio');
+		o.default = 'minecraft';
+		o.rmempty = false;
+		o.depends({ ddns_srv: "", "!reverse": true })
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.ListValue, 'ddns_srv_proto', _('Protocol'));
+		o.value('tcp', _('TCP'));
+		o.value('udp', _('UDP'));
+		o.value('tls', _('TLS'));
+		o.default = 'tcp';
+		o.rmempty = false;
+		o.depends({ ddns_srv: "", "!reverse": true })
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_srv_target', _('Target'));
+		o.datatype = 'hostname';
+		o.placeholder = 'cdn.example.com';
+		o.rmempty = true;
+		o.depends({ ddns_srv: "", "!reverse": true })
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_srv_priority', _('Priority'));
+		o.datatype = 'range(0, 65535)';
+		o.default = 0;
+		o.rmempty = true;
+		o.depends({ ddns_srv: "", "!reverse": true })
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_srv_weight', _('Weight'));
+		o.datatype = 'range(0, 65535)';
+		o.default = 65535;
+		o.rmempty = true;
+		o.depends({ ddns_srv: "", "!reverse": true })
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.DummyValue, '_ddns_https_dump', _('HTTPS Record'));
+		o.rawhtml = false;
+		o.cfgvalue = function(section_id) {
+			let fqdn = uci.get(conf, section_id, 'ddns_https');
+			let targ = uci.get(conf, section_id, 'ddns_https_target');
+			let svcp = uci.get(conf, section_id, 'ddns_https_svcparams');
+			let prio = uci.get(conf, section_id, 'ddns_https_priority');
+
+			if ( fqdn && targ && svcp && prio )
+				return fqdn + '. <TTL> IN HTTPS　' + prio + ' ' + targ + ' ' + svcp;
+		};
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_https', _('FQDN'));
+		o.datatype = 'hostname';
+		o.placeholder = 'www.example.com';
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_https_target', _('Target'));
+		o.datatype = "or('.', hostname)";
+		o.placeholder = '. or web.example.com';
+		o.default = '.';
+		o.rmempty = true;
+		o.depends({ ddns_https: "", "!reverse": true })
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_https_svcparams', _('SvcParams'));
+		o.placeholder = 'alpn="h3,h3-29,h2,http/1.1" ipv4hint= ipv6hint= port=';
+		o.default = 'alpn="h2,http/1.1"';
+		o.rmempty = true;
+		o.depends({ ddns_https: "", "!reverse": true })
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_https_priority', _('Priority'));
+		o.datatype = 'range(1, 65535)';
+		o.default = 1;
+		o.rmempty = true;
+		o.depends({ ddns_https: "", "!reverse": true })
 		o.modalonly = true;
 
 		o = s.taboption('custom', form.Value, 'custom_script', _('Custom Script'));
