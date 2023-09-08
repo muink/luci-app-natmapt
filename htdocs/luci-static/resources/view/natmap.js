@@ -327,6 +327,21 @@ return view.extend({
 		o.retain = true;
 		o.depends('forward', '1');
 		o.modalonly = true;
+		o.validate = function(section_id, value) {
+			if (value == null || value == '' || value == 'ignore')
+				return _('Expecting: non-empty value');
+
+			let family = L.bind(function() {
+				let E = document.getElementById('widget.' + this.cbid(section_id).match(/.+\./) + 'family');
+				let i = E ? E.selectedIndex : null;
+				return E ? E.options[i].value : null;
+			}, s.getOption('family'))
+
+			if (value == 'dnat' && family() == 'ipv6')
+				return _('The DNAT method not support under IPv6');
+
+			return true;
+		};
 
 		o = s.taboption('forward', form.Flag, 'natloopback', _('NAT loopback'));
 		o.default = o.enabled;
