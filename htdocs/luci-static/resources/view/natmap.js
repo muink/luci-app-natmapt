@@ -227,7 +227,7 @@ return view.extend({
 			o = s.option(form.DummyValue, '_nattest_result', '　');
 			o.rawhtml = true;
 			o.cfgvalue = function(s) {
-				return nattest_result;
+				return '<details><summary>' + _('Expand/Collapse result') + '</summary>' + nattest_result + '</details>';
 			}
 		};
 
