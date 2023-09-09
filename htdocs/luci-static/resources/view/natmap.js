@@ -498,7 +498,7 @@ return view.extend({
 		o.modalonly = true;
 
 		o = s.taboption('notify', form.Value, 'notify_text', _('Text content'));
-		o.placeholder = 'NATMap: [${protocol^^}] $inner_ip:$inner_port -> $ip:$port';
+		o.placeholder = 'NATMap: ${comment:+$comment: }[${protocol^^}] $inner_ip:$inner_port -> $ip:$port';
 		o.rmempty = true;
 		o.modalonly = true;
 
