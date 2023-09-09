@@ -9,10 +9,11 @@ TCP/UDP port mapping for full cone NAT
 - [x] Transparent Port forward (Forward port = 0)
 - [x] Refresh the listen port of the BT Client (Forward port = 0)
 - [x] Port update notify script
-- [ ] A Record update script
-- [ ] AAAA Record update script
-- [ ] SRV Record update script
-- [ ] HTTPS Record update script
+- [x] A Record update script
+- [x] AAAA Record update script
+- [x] SRV Record update script
+- [x] HTTPS Record update script
+- [ ] SVCB Record update script
 
 ## Screenshots
 
