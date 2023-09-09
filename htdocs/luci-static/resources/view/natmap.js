@@ -580,7 +580,8 @@ return view.extend({
 		o.rmempty = true;
 		o.modalonly = true;
 
-		o = s.taboption('ddns', form.Value, 'ddns_srv_serv', _('Service'));
+		o = s.taboption('ddns', form.Value, 'ddns_srv_serv', _('Service'), _('Can refer to RFC8552'));
+		o.value('http');
 		o.value('minecraft');
 		o.value('factorio');
 		o.default = 'minecraft';
@@ -588,7 +589,7 @@ return view.extend({
 		o.depends({ ddns_srv: "", "!reverse": true })
 		o.modalonly = true;
 
-		o = s.taboption('ddns', form.ListValue, 'ddns_srv_proto', _('Protocol'));
+		o = s.taboption('ddns', form.Value, 'ddns_srv_proto', _('Protocol'), _('Can refer to RFC8552'));
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
 		o.value('tls', _('TLS'));
