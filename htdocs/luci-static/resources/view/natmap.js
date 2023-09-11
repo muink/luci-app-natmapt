@@ -27,9 +27,9 @@ var callHostHints = rpc.declare({
 });
 
 function getInstances() {
-	return L.resolveDefault(callServiceList('natmap'), {}).then(function(res) {
+	return L.resolveDefault(callServiceList(conf), {}).then(function(res) {
 		try {
-			return res.natmap.instances || {};
+			return res[conf].instances || {};
 		} catch (e) {}
 		return {};
 	});
