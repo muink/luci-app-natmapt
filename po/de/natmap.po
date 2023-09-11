@@ -26,9 +26,18 @@ msgstr ""
 msgid "AAAA Record"
 msgstr ""
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:46
+msgid "Active NATMap Portmap"
+msgstr ""
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:298
 msgid "Bind port"
 msgstr "Bindungsport"
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:583
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:592
+msgid "Can refer to RFC8552"
+msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:208
 msgid "Check"
@@ -43,7 +52,7 @@ msgid "Comment"
 msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:245
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:662
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:663
 msgid "Custom Script"
 msgstr ""
 
@@ -92,7 +101,7 @@ msgstr "Externer Port"
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:548
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:555
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:577
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:634
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:635
 msgid "FQDN"
 msgstr ""
 
@@ -140,7 +149,7 @@ msgstr ""
 msgid "HTTP server"
 msgstr "HTTP Server"
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:621
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:622
 msgid "HTTPS Record"
 msgstr ""
 
@@ -150,6 +159,14 @@ msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:284
 msgid "IPv6"
+msgstr ""
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:61
+msgid "Inner Addr"
+msgstr ""
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:62
+msgid "Inner Port"
 msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:291
@@ -173,6 +190,10 @@ msgstr ""
 msgid "NATMap"
 msgstr "NATMap"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:59
+msgid "Name"
+msgstr ""
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:322
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:391
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:422
@@ -182,6 +203,14 @@ msgstr ""
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:243
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:492
 msgid "Notify Scripts"
+msgstr ""
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:63
+msgid "Outer Addr"
+msgstr ""
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:64
+msgid "Outer Port"
 msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:467
@@ -194,8 +223,8 @@ msgid ""
 "conflicts.</br>"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:607
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:655
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:608
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:656
 msgid "Priority"
 msgstr ""
 
@@ -204,7 +233,8 @@ msgid "Private API Domain"
 msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:271
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:591
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:592
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:60
 msgid "Protocol"
 msgstr "Protokoll"
 
@@ -247,11 +277,11 @@ msgstr ""
 msgid "Set 0 will follow Public port"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:648
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:649
 msgid "SvcParams"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:592
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:593
 msgid "TCP"
 msgstr ""
 
@@ -259,12 +289,12 @@ msgstr ""
 msgid "TCP STUN"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:594
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:595
 msgid "TLS"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:600
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:640
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:601
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:641
 msgid "Target"
 msgstr ""
 
@@ -280,9 +310,14 @@ msgstr ""
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:503
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:539
 msgid ""
-"The KEY required by the script above. See <a href=\"%s\" target=\"_blank\">"
-"%s*</a> for the format of KEY required by each script. Add multiple entries "
-"here in KEY=VAL shell variable format to supply multiple KEY variables."
+"The KEY required by the script above. See <a href=\"%s\" "
+"target=\"_blank\">%s*</a> for the format of KEY required by each script. Add "
+"multiple entries here in KEY=VAL shell variable format to supply multiple "
+"KEY variables."
+msgstr ""
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:83
+msgid "There are no active portmap"
 msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:140
@@ -301,7 +336,7 @@ msgstr ""
 msgid "Tokens"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:593
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:594
 msgid "UDP"
 msgstr ""
 
@@ -325,7 +360,7 @@ msgstr ""
 msgid "Web UI Port"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:614
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:615
 msgid "Weight"
 msgstr ""
 

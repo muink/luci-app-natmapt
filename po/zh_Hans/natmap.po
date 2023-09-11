@@ -26,9 +26,18 @@ msgstr "A 记录"
 msgid "AAAA Record"
 msgstr "AAAA 记录"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:46
+msgid "Active NATMap Portmap"
+msgstr "活动的 NATMap 端口映射"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:298
 msgid "Bind port"
 msgstr "绑定端口"
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:583
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:592
+msgid "Can refer to RFC8552"
+msgstr "可以参考 RFC8552"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:208
 msgid "Check"
@@ -43,7 +52,7 @@ msgid "Comment"
 msgstr "备注"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:245
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:662
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:663
 msgid "Custom Script"
 msgstr "自定义脚本"
 
@@ -92,7 +101,7 @@ msgstr "外部端口"
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:548
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:555
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:577
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:634
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:635
 msgid "FQDN"
 msgstr ""
 
@@ -140,7 +149,7 @@ msgstr ""
 msgid "HTTP server"
 msgstr "HTTP 服务器"
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:621
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:622
 msgid "HTTPS Record"
 msgstr "HTTPS 记录"
 
@@ -151,6 +160,14 @@ msgstr "IPv4"
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:284
 msgid "IPv6"
 msgstr "IPv6"
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:61
+msgid "Inner Addr"
+msgstr "内部地址"
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:62
+msgid "Inner Port"
+msgstr "内部端口"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:291
 msgid "Interface"
@@ -173,6 +190,10 @@ msgstr "NATBehavior-Test 端口打开于"
 msgid "NATMap"
 msgstr "NATMap"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:59
+msgid "Name"
+msgstr "名称"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:322
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:391
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:422
@@ -184,6 +205,14 @@ msgstr ""
 msgid "Notify Scripts"
 msgstr "通知脚本"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:63
+msgid "Outer Addr"
+msgstr "外部地址"
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:64
+msgid "Outer Port"
+msgstr "外部端口"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:467
 msgid "Password"
 msgstr "密码"
@@ -194,8 +223,8 @@ msgid ""
 "conflicts.</br>"
 msgstr "请检查<a href=\"%s\"><b>防火墙规则</b></a>以避免端口冲突"
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:607
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:655
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:608
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:656
 msgid "Priority"
 msgstr "优先权"
 
@@ -204,7 +233,8 @@ msgid "Private API Domain"
 msgstr "私有 API 域名"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:271
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:591
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:592
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:60
 msgid "Protocol"
 msgstr "协议"
 
@@ -247,11 +277,11 @@ msgstr "服务"
 msgid "Set 0 will follow Public port"
 msgstr "设为 0 将跟随公共端口"
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:648
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:649
 msgid "SvcParams"
 msgstr "服务参数"
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:592
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:593
 msgid "TCP"
 msgstr ""
 
@@ -259,12 +289,12 @@ msgstr ""
 msgid "TCP STUN"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:594
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:595
 msgid "TLS"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:600
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:640
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:601
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:641
 msgid "Target"
 msgstr "目标"
 
@@ -280,12 +310,17 @@ msgstr "DNAT 方法不支持在 IPv6 下使用"
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:503
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:539
 msgid ""
-"The KEY required by the script above. See <a href=\"%s\" target=\"_blank\">"
-"%s*</a> for the format of KEY required by each script. Add multiple entries "
-"here in KEY=VAL shell variable format to supply multiple KEY variables."
+"The KEY required by the script above. See <a href=\"%s\" "
+"target=\"_blank\">%s*</a> for the format of KEY required by each script. Add "
+"multiple entries here in KEY=VAL shell variable format to supply multiple "
+"KEY variables."
 msgstr ""
 "上面脚本所需的 KEY。请查看 <a href=\"%s\" target=\"_blank\">%s*</a> 以获得对"
 "应脚本所需的 KEY 列表。请输入格式为 KEY=VAL 的多个 KEY 条目"
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:83
+msgid "There are no active portmap"
+msgstr "没有活动的端口映射"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:140
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:149
@@ -303,7 +338,7 @@ msgstr "检测 NAT 行为需要先安装 <a href=\"%s\"><b>stuntman-client</b></
 msgid "Tokens"
 msgstr ""
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:593
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:594
 msgid "UDP"
 msgstr ""
 
@@ -327,7 +362,7 @@ msgstr "经由 natmap"
 msgid "Web UI Port"
 msgstr "Web UI 端口"
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:614
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:615
 msgid "Weight"
 msgstr "权重"
 
