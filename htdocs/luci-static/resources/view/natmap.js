@@ -115,9 +115,14 @@ return view.extend({
 		o.datatype = 'hostname';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'def_interval', _('Default ') + _('keep-alive interval (seconds)'));
+		o = s.option(form.Value, 'def_tcp_interval', _('Default ') + _('TCP ') + _('keep-alive interval (seconds)'));
 		o.datatype = "and(uinteger, min(1))";
-		o.default = 10;
+		o.default = 30;
+		o.rmempty = false;
+
+		o = s.option(form.Value, 'def_udp_interval', _('Default ') + _('UDP ') + _('keep-alive interval (seconds)'));
+		o.datatype = "and(uinteger, min(1))";
+		o.default = 15;
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'test_port', _('NATBehavior-Test port open on'), _('Please check <a href="%s"><b>Firewall Rules</b></a> to avoid port conflicts.</br>')
