@@ -16,10 +16,13 @@ port="$1" && shift
 [ "$(echo "$tcpstun" | sed 's|[A-Za-z0-9:.-]||g')" == "" ] || exit 1
 [ "$(echo "$port" | sed 's|[0-9]||g')" == "" ] || exit 1
 
+PROG="/usr/libexec/natmap/natmap-natest"
+if [ -x "$(command -v stunclient)" ]; then ln -s "$(command -v stunclient)" "$PROG" 2>/dev/null; else exit 1; fi
+
 #/etc/init.d/firewall reload >/dev/null 2>&1
 
-udp_result="$(timeout 30 stunclient --protocol udp --mode full --localport $port ${udpstun%:*} ${udpstun#*:} 2>/dev/null)"
-tcp_result="$(timeout 10 stunclient --protocol tcp --mode full --localport $port ${tcpstun%:*} ${udpstun#*:} 2>/dev/null)"
+udp_result="$(timeout 30 $PROG --protocol udp --mode full --localport $port ${udpstun%:*} ${udpstun#*:} 2>/dev/null)"
+tcp_result="$(timeout 10 $PROG --protocol tcp --mode full --localport $port ${tcpstun%:*} ${udpstun#*:} 2>/dev/null)"
 
 cat <<- EOF
 UDP TEST:
