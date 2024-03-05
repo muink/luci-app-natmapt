@@ -101,15 +101,15 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'def_tcp_stun', _('Default ') + _('TCP STUN ') + _('Server'));
-		o.datatype = 'hostname';
+		o.datatype = 'or(hostname, hostport)';
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'def_udp_stun', _('Default ') + _('UDP STUN ') + _('Server'));
-		o.datatype = 'hostname';
+		o.datatype = 'or(hostname, hostport)';
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'def_http_server', _('Default ') + _('HTTP keep-alive ') + _('Server'));
-		o.datatype = 'hostname';
+		o.datatype = 'or(hostname, hostport)';
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'def_tcp_interval', _('Default ') + _('TCP ') + _('keep-alive interval (seconds)'));
@@ -255,12 +255,12 @@ return view.extend({
 		o.modalonly = true;
 
 		o = s.taboption('general', form.Value, 'stun_server', _('STUN server'));
-		o.datatype = 'hostname';
+		o.datatype = 'or(hostname, hostport)';
 		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('general', form.Value, 'http_server', _('HTTP server'), _('For TCP mode'));
-		o.datatype = 'hostname';
+		o.datatype = 'or(hostname, hostport)';
 		o.rmempty = true;
 		o.modalonly = true;
 
