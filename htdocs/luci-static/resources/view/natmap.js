@@ -352,6 +352,14 @@ return view.extend({
 		o.depends('forward_mode', 'dnat');
 		o.modalonly = true;
 
+		o = s.taboption('forward', form.Value, 'forward_timeout', _('Forward timeout'), _('Port forwarding session idle timeout in seconds'));
+		o.datatype = "and(uinteger, min(1))";
+		o.placeholder = '120000';
+		o.rmempty = true;
+		o.retain = true;
+		o.depends('forward_mode', 'via');
+		o.modalonly = true;
+
 		o = s.taboption('forward', form.Value, 'forward_target', _('Forward target'));
 		o.datatype = 'ipaddr(1)';
 		o.value('127.0.0.1', '127.0.0.1/::1 ' + _('(This device default Lan)'));
