@@ -112,6 +112,9 @@ return view.extend({
 		o.datatype = 'or(hostname, hostport)';
 		o.rmempty = false;
 
+		o = s.option(form.Value, 'def_fwmark_value', _('Default ') + _('Fwmark value'));
+		o.rmempty = true;
+
 		o = s.option(form.Value, 'def_tcp_interval', _('Default ') + _('TCP ') + _('keep-alive interval (seconds)'));
 		o.datatype = "and(uinteger, min(1))";
 		o.default = 30;
@@ -261,6 +264,10 @@ return view.extend({
 
 		o = s.taboption('general', form.Value, 'http_server', _('HTTP server'), _('For TCP mode'));
 		o.datatype = 'or(hostname, hostport)';
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.taboption('general', form.Value, 'fwmark_value', _('Fwmark value'), _('Mark fwmark for STUN/HTTP outbound traffic'));
 		o.rmempty = true;
 		o.modalonly = true;
 
