@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_NAME:=luci-app-natmapt
-PKG_VERSION:=20240603
+PKG_VERSION:=20240616
 
 LUCI_TITLE:=LuCI Support for natmap
 LUCI_PKGARCH:=all
@@ -18,5 +18,11 @@ PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=Anya Lin <hukk1996@gmail.com>, Richard Yu <yurichard3839@gmail.com>
 
 include $(TOPDIR)/feeds/luci/luci.mk
+
+define Package/$(LUCI_NAME)/prerm
+#!/bin/sh
+rm -f "$$IPKG_INSTROOT/usr/libexec/natmap/natmap-natest"
+exit 0
+endef
 
 # call BuildPackage - OpenWrt buildroot signature
