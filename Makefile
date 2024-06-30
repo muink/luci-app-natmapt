@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_NAME:=luci-app-natmapt
-PKG_VERSION:=20240616
+PKG_VERSION:=20240630
 
 LUCI_TITLE:=LuCI Support for natmap
 LUCI_PKGARCH:=all
@@ -16,6 +16,8 @@ LUCI_DESCRIPTION:=TCP/UDP port mapping for full cone NAT
 
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=Anya Lin <hukk1996@gmail.com>, Richard Yu <yurichard3839@gmail.com>
+
+PKG_UNPACK=$(CURDIR)/.prepare.sh $(PKG_NAME) $(CURDIR) $(PKG_BUILD_DIR)
 
 define Package/$(LUCI_NAME)/prerm
 #!/bin/sh
