@@ -6,7 +6,7 @@
 				"/etc/natmap/client": [ "list" ],
 				"/etc/natmap/notify": [ "list" ],
 				"/etc/natmap/ddns": [ "list" ],
-				"/etc/init.d/natmap reload": [ "exec" ],
+				"/etc/init.d/natmap reload *": [ "exec" ],
 				"/var/run/natmap/*": [ "read" ],
 				"/tmp/natmap-natBehavior": [ "read" ],
 				"/usr/libexec/natmap/natcheck.sh": [ "exec" ]
