@@ -42,11 +42,13 @@ echo "$1" | sed -E "\
 	s|(Nat behavior:\s*)\b(Endpoint Independent Mapping)\b|\1<font color=\"#7cfc00\">\2</font>|g;\
 	s|(Nat behavior:\s*)\b(Address Dependent Mapping)\b|\1<font color=\"#ffc100\">\2</font>|g;\
 	s|(Nat behavior:\s*)\b(Address and Port Dependent Mapping)\b|\1<font color=\"#ff8200\">\2</font>|g;\
-	s|(Nat filtering:\s*)\b(Unknown Behavior)\b|\1<font color=\"#808080\">\2</font>|g;\
-	s|(Nat filtering:\s*)\b(Direct Mapping)\b|\1<font color=\"#1e96fc\">\2</font>|g;\
+	s|(Nat behavior:\s*)\b(Unknown NAT Behavior)\b|\1<font color=\"#808080\">\2</font>|g;\
+	s|(Nat filtering:\s*)\b(Unknown Filtering)\b|\1<font color=\"#808080\">\2</font>|g;\
+	s|(Nat filtering:\s*)\b(Direct Mapping (Filtering))\b|\1<font color=\"#1e96fc\">\2</font>|g;\
 	s|(Nat filtering:\s*)\b(Endpoint Independent Filtering)\b|\1<font color=\"#7cfc00\">\2</font>|g;\
 	s|(Nat filtering:\s*)\b(Address Dependent Filtering)\b|\1<font color=\"#ffc100\">\2</font>|g;\
 	s|(Nat filtering:\s*)\b(Address and Port Dependent Filtering)\b|\1<font color=\"#ff8200\">\2</font>|g;\
+	s|(Nat filtering:\s*)\b(Unknown NAT Filtering)\b|\1<font color=\"#808080\">\2</font>|g;\
 	s|(:\s*)(.*)$|\1<b>\2</b><br>|g"
 }
 
