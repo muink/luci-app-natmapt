@@ -1,12 +1,12 @@
 # NATMap by heiher <https://github.com/heiher/natmap>
-# Copyright (C) 2023 muink <https://github.com/muink>
+# Copyright (C) 2023-2024 muink <https://github.com/muink>
 #
 # This is free software, licensed under the Apache License, Version 2.0
 
 include $(TOPDIR)/rules.mk
 
 LUCI_NAME:=luci-app-natmapt
-PKG_VERSION:=20240806
+PKG_VERSION:=20240813
 
 LUCI_TITLE:=LuCI Support for natmap
 LUCI_PKGARCH:=all
