@@ -303,8 +303,16 @@ return view.extend({
 		o.rmempty = true;
 
 		o = s.taboption('general', form.Value, 'port', _('Bind port'));
-		o.datatype = "and(port, min(1))";
+		o.datatype = "or(port, portrange)";
 		o.rmempty = false;
+		o.validate = function(section_id, value) {
+			let regexp = new RegExp(/^([1-9]\d*)(-([1-9]\d*))*$/)
+
+			if (!regexp.test(value))
+				return _('Expecting: %s').format(_('Non-0 port'));
+
+			return true;
+		};
 
 		o = s.taboption('forward', form.Flag, 'forward', _('Forward mode'));
 		o.default = o.disabled;

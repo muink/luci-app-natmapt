@@ -215,6 +215,10 @@ msgstr "名称"
 msgid "No"
 msgstr ""
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:309
+msgid "Non-0 port"
+msgstr "非 0 端口"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:245
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:506
 msgid "Notify Scripts"
