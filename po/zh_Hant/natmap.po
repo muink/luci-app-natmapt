@@ -87,11 +87,6 @@ msgstr "啟用"
 msgid "Expand/Collapse result"
 msgstr "展開/折疊 結果"
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:136
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:341
-msgid "Expecting: non-empty value"
-msgstr ""
-
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:487
 msgid "External IP"
 msgstr "外部 IP"
@@ -172,6 +167,10 @@ msgstr "IPv4"
 msgid "IPv6"
 msgstr "IPv6"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:304
+msgid "If you enable <b>Notify Scripts</b>, you will be bombarded with messages"
+msgstr "如果您開啟了<b>通知腳本</b>, 將被大量訊息轟炸"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:61
 msgid "Inner Addr"
 msgstr "內部位址"
@@ -219,6 +218,10 @@ msgstr ""
 msgid "Non-0 port"
 msgstr "非 0 埠"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:303
+msgid "Note: After using <code>portrange</code>, the public ports will be opened in rotation</br>"
+msgstr "注意: 使用 <code>portrange</code> 後, 會輪換打開公網埠</br>"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:245
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:506
 msgid "Notify Scripts"
@@ -240,7 +243,7 @@ msgstr "密碼"
 msgid ""
 "Please check <a href=\"%s\"><b>Firewall Rules</b></a> to avoid port "
 "conflicts.</br>"
-msgstr "請檢查<a href=\"%s\"><b>防火牆規則</b></a>以避免端口衝突"
+msgstr "請檢查<a href=\"%s\"><b>防火牆規則</b></a>以避免埠衝突"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:362
 msgid "Port forwarding session idle timeout in seconds"
@@ -349,7 +352,7 @@ msgstr "沒有活動的通訊埠映射"
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:145
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:154
 msgid "This port is already used"
-msgstr "該端口已被使用"
+msgstr "該埠已被使用"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:216
 msgid ""

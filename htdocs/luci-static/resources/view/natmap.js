@@ -237,6 +237,7 @@ return view.extend({
 		s.sortable  = true;
 		s.addremove = true;
 		s.anonymous = true;
+		s.nodescriptions = true;
 
 		s.tab('general', _('General Settings'));
 		s.tab('forward', _('Forward Settings'));
@@ -299,7 +300,9 @@ return view.extend({
 		o.nocreate = false;
 		o.rmempty = true;
 
-		o = s.taboption('general', form.Value, 'port', _('Bind port'));
+		o = s.taboption('general', form.Value, 'port', _('Bind port'),
+			_('Note: After using <code>portrange</code>, the public ports will be opened in rotation</br>') +
+			_('If you enable <b>Notify Scripts</b>, you will be bombarded with messages'));
 		o.datatype = "or(port, portrange)";
 		o.rmempty = false;
 		o.validate = function(section_id, value) {

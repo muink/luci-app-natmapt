@@ -87,11 +87,6 @@ msgstr "启用"
 msgid "Expand/Collapse result"
 msgstr "展开/收起 结果"
 
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:136
-#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:341
-msgid "Expecting: non-empty value"
-msgstr ""
-
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:487
 msgid "External IP"
 msgstr "外部 IP"
@@ -172,6 +167,10 @@ msgstr "IPv4"
 msgid "IPv6"
 msgstr "IPv6"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:304
+msgid "If you enable <b>Notify Scripts</b>, you will be bombarded with messages"
+msgstr "如果您开启了<b>通知脚本</b>, 将被大量消息轰炸"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:61
 msgid "Inner Addr"
 msgstr "内部地址"
@@ -218,6 +217,10 @@ msgstr ""
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:309
 msgid "Non-0 port"
 msgstr "非 0 端口"
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:303
+msgid "Note: After using <code>portrange</code>, the public ports will be opened in rotation</br>"
+msgstr "注意: 使用 <code>portrange</code> 后, 会轮换打开公网端口</br>"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:245
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:506
