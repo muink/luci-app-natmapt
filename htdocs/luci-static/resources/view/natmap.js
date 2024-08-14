@@ -133,9 +133,6 @@ return view.extend({
 		o.placeholder = 3445;
 		o.rmempty = false;
 		o.validate = function(section_id, value) {
-			if (value == null || value == '' || value == 'ignore')
-				return _('Expecting: non-empty value');
-
 			let conf = 'firewall';
 			let fw_forwards = uci.sections(conf, 'redirect');
 			let fw_rules = uci.sections(conf, 'rule');
@@ -346,9 +343,6 @@ return view.extend({
 		o.depends('forward', '1');
 		o.modalonly = true;
 		o.validate = function(section_id, value) {
-			if (value == null || value == '' || value == 'ignore')
-				return _('Expecting: non-empty value');
-
 			let family = L.bind(function() {
 				let E = document.getElementById('widget.' + this.cbid(section_id).match(/.+\./) + 'family');
 				let i = E ? E.selectedIndex : null;
