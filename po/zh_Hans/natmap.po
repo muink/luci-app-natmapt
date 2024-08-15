@@ -30,6 +30,11 @@ msgstr "AAAA 记录"
 msgid "Active NATMap Portmap"
 msgstr "活动的 NATMap 端口映射"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:105
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:111
+msgid "Available server <a href=\"%s\" target=\"_blank\">references</a>"
+msgstr "可用的服务器<a href=\"%s\" target=\"_blank\">参考</a>"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:304
 msgid "Bind port"
 msgstr "绑定端口"

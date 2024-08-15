@@ -101,11 +101,15 @@ return view.extend({
 		o.default = o.disabled;
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'def_tcp_stun', _('Default ') + _('TCP STUN ') + _('Server'));
+		o = s.option(form.Value, 'def_tcp_stun', _('Default ') + _('TCP STUN ') + _('Server'),
+			_('Available server <a href="%s" target="_blank">references</a>')
+				.format(_('https://github.com/muink/rfc5780-stun-server/blob/master/valid_hosts_rfc5780.txt')));
 		o.datatype = 'or(hostname, hostport)';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'def_udp_stun', _('Default ') + _('UDP STUN ') + _('Server'));
+		o = s.option(form.Value, 'def_udp_stun', _('Default ') + _('UDP STUN ') + _('Server'),
+			_('Available server <a href="%s" target="_blank">references</a>')
+				.format(_('https://github.com/muink/rfc5780-stun-server/blob/master/valid_hosts_rfc5780_tcp.txt')));
 		o.datatype = 'or(hostname, hostport)';
 		o.rmempty = false;
 
