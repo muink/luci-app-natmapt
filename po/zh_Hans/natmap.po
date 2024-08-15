@@ -18,6 +18,11 @@ msgstr "(此装置默认 LAN)"
 msgid "(This device default Wan)"
 msgstr "(此装置默认 WAN)"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:530
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:566
+msgid "<code># All external tokens required</code> Field"
+msgstr "<code># All external tokens required</code> 字段"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:562
 msgid "A Record"
 msgstr "A 记录"
@@ -248,7 +253,7 @@ msgstr "密码"
 msgid ""
 "Please check <a href=\"%s\"><b>Firewall Rules</b></a> to avoid port "
 "conflicts.</br>"
-msgstr "请检查<a href=\"%s\"><b>防火墙规则</b></a>以避免端口冲突"
+msgstr "请检查<a href=\"%s\"><b>防火墙规则</b></a>以避免端口冲突</br>"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:362
 msgid "Port forwarding session idle timeout in seconds"
@@ -343,11 +348,11 @@ msgstr "DNAT 方法不支持在 IPv6 下使用"
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:553
 msgid ""
 "The KEY required by the script above. See <a href=\"%s\" "
-"target=\"_blank\">%s*</a> for the format of KEY required by each script. Add "
+"target=\"_blank\">%s</a> for the format of KEY required by each script. Add "
 "multiple entries here in KEY=VAL shell variable format to supply multiple "
 "KEY variables."
 msgstr ""
-"上面脚本所需的 KEY。请查看 <a href=\"%s\" target=\"_blank\">%s*</a> 以获得对"
+"上面脚本所需的 KEY。请查看 <a href=\"%s\" target=\"_blank\">%s</a> 以获得对"
 "应脚本所需的 KEY 列表。请输入格式为 KEY=VAL 的多个 KEY 条目"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/status/include/72_natmap.js:83

@@ -525,9 +525,9 @@ return view.extend({
 
 		o = s.taboption('notify', form.DynamicList, 'notify_tokens', _('Tokens'),
 			_('The KEY required by the script above. ' +
-				'See <a href="%s" target="_blank">%s*</a> for the format of KEY required by each script. ' +
+				'See <a href="%s" target="_blank">%s</a> for the format of KEY required by each script. ' +
 				'Add multiple entries here in KEY=VAL shell variable format to supply multiple KEY variables.')
-			.format('https://github.com/muink/openwrt-natmapt/tree/master/files/notify/'));
+			.format('https://github.com/muink/openwrt-natmapt/tree/master/files/notify/', _('<code># All external tokens required</code> Field')));
 		o.datatype = 'list(string)';
 		o.placeholder = 'KEY=VAL';
 		o.rmempty = true;
@@ -561,9 +561,9 @@ return view.extend({
 
 		o = s.taboption('ddns', form.DynamicList, 'ddns_tokens', _('Tokens'),
 			_('The KEY required by the script above. ' +
-				'See <a href="%s" target="_blank">%s*</a> for the format of KEY required by each script. ' +
+				'See <a href="%s" target="_blank">%s</a> for the format of KEY required by each script. ' +
 				'Add multiple entries here in KEY=VAL shell variable format to supply multiple KEY variables.')
-			.format('https://github.com/muink/openwrt-natmapt/tree/master/files/ddns/'));
+			.format('https://github.com/muink/openwrt-natmapt/tree/master/files/ddns/', _('<code># All external tokens required</code> Field')));
 		o.datatype = 'list(string)';
 		o.placeholder = 'KEY=VAL';
 		o.rmempty = true;
