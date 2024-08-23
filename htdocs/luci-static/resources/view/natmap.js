@@ -322,20 +322,14 @@ return view.extend({
 		o.default = o.disabled;
 		o.rmempty = false;
 		o.textvalue = function(section_id) {
-			var cval = this.cfgvalue(section_id);
-			if (cval == null)
-				cval = this.default;
+			var cval = this.cfgvalue(section_id) || this.default;
 			var mode = L.bind(function() {
-				let cval = this.cfgvalue(section_id);
-				if (cval == null)
-					cval = this.default;
+				let cval = this.cfgvalue(section_id) || this.default;
 				let i = this.keylist.indexOf(cval);
 				return [this.vallist[i], cval];
 			}, s.getOption('forward_mode'))
 			var loopback = L.bind(function() {
-				let cval = this.cfgvalue(section_id);
-				if (cval == null)
-					cval = this.default;
+				let cval = this.cfgvalue(section_id) || this.default;
 				return (cval == this.enabled) ? ' L' : '';
 			}, s.getOption('natloopback'))
 			return (cval == this.enabled) ? mode()[0] + (mode()[1] === 'dnat' ? loopback() : '') : _('No');
@@ -407,9 +401,7 @@ return view.extend({
 			var cval = this.cfgvalue(section_id);
 			var i = this.keylist.indexOf(cval);
 			var enforward = L.bind(function() {
-				let cval = this.cfgvalue(section_id);
-				if (cval == null)
-					cval = this.default;
+				let cval = this.cfgvalue(section_id) || this.default;
 				return (cval == this.enabled) ? true : false;
 			}, s.getOption('forward'))
 			return enforward() ? this.vallist[i] : _('No');
@@ -421,25 +413,17 @@ return view.extend({
 		o.retain = true;
 		o.depends('forward', '1');
 		o.textvalue = function(section_id) {
-			var cval = this.cfgvalue(section_id);
-			if (cval == null)
-				cval = this.default;
+			var cval = this.cfgvalue(section_id) || this.default;
 			var enforward = L.bind(function() {
-				let cval = this.cfgvalue(section_id);
-				if (cval == null)
-					cval = this.default;
+				let cval = this.cfgvalue(section_id) || this.default;
 				return (cval == this.enabled) ? true : false;
 			}, s.getOption('forward'))
 			var refresh = L.bind(function() {
-				let cval = this.cfgvalue(section_id);
-				if (cval == null)
-					cval = this.default;
+				let cval = this.cfgvalue(section_id) || this.default;
 				return (cval == this.enabled) ? true : false;
 			}, s.getOption('refresh'))
 			var cltname = L.bind(function() {
-				let cval = this.cfgvalue(section_id);
-				if (cval == null)
-					cval = this.default;
+				let cval = this.cfgvalue(section_id) || this.default;
 				let i = this.keylist.indexOf(cval);
 				return this.vallist[i];
 			}, s.getOption('clt_script'))
