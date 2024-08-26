@@ -55,6 +55,45 @@ function getStatus() {
 	});
 }
 
+function transformHostHints(family, hosts, html) {
+	var choice_values = [],
+		choice_labels = {},
+		ip6addrs = {},
+		ipaddrs = {};
+
+	for (var mac in hosts) {
+		L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4).forEach(function(ip) {
+			ipaddrs[ip] = hosts[mac].name || mac;
+		});
+
+		L.toArray(hosts[mac].ip6addrs || hosts[mac].ipv6).forEach(function(ip) {
+			ip6addrs[ip] = hosts[mac].name || mac;
+		});
+	}
+
+	if (!family || family == 'ipv4') {
+		L.sortedKeys(ipaddrs, null, 'addr').forEach(function(ip) {
+			var val = ip,
+				txt = ipaddrs[ip];
+
+			choice_values.push(val);
+			choice_labels[val] = html ? E([], [ val, ' (', E('strong', {}, [txt]), ')' ]) : '%s (%s)'.format(val, txt);
+		});
+	}
+
+	if (!family || family == 'ipv6') {
+		L.sortedKeys(ip6addrs, null, 'addr').forEach(function(ip) {
+			var val = ip,
+				txt = ip6addrs[ip];
+
+			choice_values.push(val);
+			choice_labels[val] = html ? E([], [ val, ' (', E('strong', {}, [txt]), ')' ]) : '%s (%s)'.format(val, txt);
+		});
+	}
+
+	return [choice_values, choice_labels];
+}
+
 return view.extend({
 	load: function() {
 	return Promise.all([
@@ -296,6 +335,23 @@ return view.extend({
 			var i = this.keylist.indexOf(cval);
 			return this.vallist[i];
 		};
+		o.validate = function(section_id, value) {
+			var opt = this.section.getOption('forward_target').getUIElement(section_id),
+			choices = transformHostHints(value, hosts, true);
+
+			opt.clearChoices();
+			opt.addChoices([
+				'127.0.0.1',
+				'0.0.0.0'
+			],
+			{
+				'127.0.0.1': '127.0.0.1/::1 (<strong>%s</strong>)'.format(_('This device default Lan')),
+				'0.0.0.0': '0.0.0.0/:: (<strong>%s</strong>)'.format(_('This device default Lan'))
+			});
+			opt.addChoices(choices[0], choices[1]);
+
+			return true;
+		};
 
 		o = s.taboption('general', widgets.DeviceSelect, 'bind_ifname', _('Interface'));
 		o.multiple = false;
@@ -373,29 +429,17 @@ return view.extend({
 
 		o = s.taboption('forward', form.Value, 'forward_target', _('Forward target'));
 		o.datatype = 'ipaddr(1)';
-		o.value('127.0.0.1', '127.0.0.1/::1 ' + _('(This device default Lan)'));
-		o.value('0.0.0.0', '0.0.0.0/:: ' + _('(This device default Wan)'));
+		o.value('127.0.0.1', '127.0.0.1/::1 (%s)'.format(_('This device default Lan')));
+		o.value('0.0.0.0', '0.0.0.0/:: (%s)'.format(_('This device default Lan')));
 		o.default = '127.0.0.1';
 		o.rmempty = false;
 		o.retain = true;
 		o.depends('forward', '1');
 
-		var ipaddrs = {}, ip6addrs = {};
-		Object.keys(hosts).forEach(function(mac) {
-			var addrs = L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4),
-				addrs6 = L.toArray(hosts[mac].ip6addrs || hosts[mac].ipv6);
-
-			for (var i = 0; i < addrs.length; i++)
-				ipaddrs[addrs[i]] = hosts[mac].name || mac;
-			for (var i = 0; i < addrs6.length; i++)
-				ip6addrs[addrs6[i]] = hosts[mac].name || mac;
-		});
-		L.sortedKeys(ipaddrs, null, 'addr').forEach(function(ipv4) {
-			o.value(ipv4, ipaddrs[ipv4] ? '%s (%s)'.format(ipv4, ipaddrs[ipv4]) : ipv4);
-		});
-		L.sortedKeys(ip6addrs, null, 'addr').forEach(function(ipv6) {
-			o.value(ipv6, ip6addrs[ipv6] ? '%s (%s)'.format(ipv6, ip6addrs[ipv6]) : ipv6);
-		});
+		((labels) => {
+			for (var val in labels)
+				o.value(val, labels[val]);
+		})(transformHostHints(null, hosts, false)[1]);
 
 		o.textvalue = function(section_id) {
 			var cval = this.cfgvalue(section_id);

@@ -11,12 +11,12 @@ msgstr ""
 "X-Generator: Weblate 4.15.1-dev\n"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:372
-msgid "(This device default Lan)"
-msgstr "(本裝置默認 LAN)"
+msgid "This device default Lan"
+msgstr "本裝置默認 LAN"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:373
-msgid "(This device default Wan)"
-msgstr "(本裝置默認 WAN)"
+msgid "This device default Wan"
+msgstr "本裝置默認 WAN"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:530
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:566

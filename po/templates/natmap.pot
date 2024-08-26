@@ -2,11 +2,11 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:372
-msgid "(This device default Lan)"
+msgid "This device default Lan"
 msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:373
-msgid "(This device default Wan)"
+msgid "This device default Wan"
 msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:562
