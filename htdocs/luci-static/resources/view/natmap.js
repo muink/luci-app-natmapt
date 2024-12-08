@@ -557,7 +557,8 @@ return view.extend({
 		o.placeholder = '3';  // Default priority
 		o.rmempty = true;
 		o.modalonly = true;
-		o.description = _('Priority level (default 3).');
+		o.description = _('Priority level (default 3).' +
+				 	'See <a href="https://docs.ntfy.sh/publish/#message-priority" target="_blank">Message priority</a>');
 
 		// Add Tag input field, like 'notify_text' (now above tokens)
 		o = s.taboption('notify', form.Value, 'notify_tag', _('HTTP header option: Tag'));
@@ -565,7 +566,8 @@ return view.extend({
 		o.placeholder = 'postbox';  // Default tag
 		o.rmempty = true;
 		o.modalonly = true;
-		o.description = _('Tag for the notification (default "postbox").');
+		o.description = _('Tag for the notification (default "postbox").' +
+				 	'See <a href="https://docs.ntfy.sh/publish/#tags-emojis" target="_blank">Tags & emojis</a>');
 
 		o = s.taboption('notify', form.DynamicList, 'notify_tokens', _('Tokens'),
 			_('The KEY required by the script above. ' +
