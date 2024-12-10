@@ -551,7 +551,7 @@ return view.extend({
 				o.value(etc_path + '/notify/' + scripts_notify[i].name, scripts_notify[i].name);
 		};
 		
-		// Add Priority input field, like 'notify_text' (now above tokens)
+		// Add Priority input field above tokens
 		o = s.taboption('notify', form.Value, 'notify_priority', _('HTTP header option: Priority'));
 		o.datatype = 'uinteger';  // Ensure the input is an unsigned integer
 		o.placeholder = '3';  // Default priority
@@ -560,7 +560,7 @@ return view.extend({
 		o.description = _('Priority level (default 3). ' +
 				 	'See <a href="https://docs.ntfy.sh/publish/#message-priority" target="_blank">Message priority</a>');
 
-		// Add Tag input field, like 'notify_text' (now above tokens)
+		// Add Tag input field above tokens
 		o = s.taboption('notify', form.Value, 'notify_tag', _('HTTP header option: Tag'));
 		o.datatype = 'string';
 		o.placeholder = 'postbox';  // Default tag
