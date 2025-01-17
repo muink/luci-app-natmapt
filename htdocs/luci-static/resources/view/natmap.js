@@ -488,10 +488,10 @@ return view.extend({
 		o.depends('refresh', '1');
 		o.modalonly = true;
 
-		if (scripts_client.length) {
-			for (var i = 0; i < scripts_client.length; i++)
-				o.value(etc_path + '/client/' + scripts_client[i].name, scripts_client[i].name);
-		};
+		if (scripts_client.length)
+			scripts_client.forEach((script) => {
+				o.value(etc_path + '/client/' + script.name, script.name);
+			});
 
 		o = s.taboption('forward', form.ListValue, 'clt_scheme', _('URI Scheme'));
 		o.value('http', 'HTTP');
@@ -546,10 +546,10 @@ return view.extend({
 		o.rmempty = false;
 		o.modalonly = true;
 
-		if (scripts_notify.length) {
-			for (var i = 0; i < scripts_notify.length; i++)
-				o.value(etc_path + '/notify/' + scripts_notify[i].name, scripts_notify[i].name);
-		};
+		if (scripts_notify.length)
+			scripts_notify.forEach((script) => {
+				o.value(etc_path + '/notify/' + script.name, script.name);
+			});
 
 		o = s.taboption('notify', form.DynamicList, 'notify_tokens', _('Tokens'),
 			_('The KEY required by the script above. ' +
@@ -582,10 +582,10 @@ return view.extend({
 		o.rmempty = false;
 		o.modalonly = true;
 
-		if (scripts_ddns.length) {
-			for (var i = 0; i < scripts_ddns.length; i++)
-				o.value(etc_path + '/ddns/' + scripts_ddns[i].name, scripts_ddns[i].name);
-		};
+		if (scripts_ddns.length)
+			scripts_ddns.forEach((script) => {
+				o.value(etc_path + '/ddns/' + script.name, script.name);
+			});
 
 		o = s.taboption('ddns', form.DynamicList, 'ddns_tokens', _('Tokens'),
 			_('The KEY required by the script above. ' +
