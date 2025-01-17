@@ -95,7 +95,7 @@ function transformHostHints(family, hosts, html) {
 }
 
 return view.extend({
-	load: function() {
+	load() {
 	return Promise.all([
 		getStatus(),
 		network.getWANNetworks(),
@@ -110,7 +110,7 @@ return view.extend({
 	]);
 	},
 
-	render: function(res) {
+	render(res) {
 		var status = res[0],
 			wans = res[1],
 			has_stunclient = res[2] ? res[2].path : null,

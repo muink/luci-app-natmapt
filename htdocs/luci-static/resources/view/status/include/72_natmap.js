@@ -45,13 +45,13 @@ function getStatus() {
 return baseclass.extend({
 	title: _('Active NATMap Portmap'),
 
-	load: function() {
+	load() {
 		return Promise.all([
 			getStatus()
 		]);
 	},
 
-	render: function(res) {
+	render(res) {
 		var status = res[0];
 
 		var table = E('table', { 'class': 'table cbi-section-table', 'id': 'natmap_status_table' }, [
