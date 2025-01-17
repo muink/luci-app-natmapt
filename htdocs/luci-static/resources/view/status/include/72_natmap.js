@@ -15,7 +15,7 @@ const callServiceList = rpc.declare({
 });
 
 function getInstances() {
-	return L.resolveDefault(callServiceList(conf), {}).then(function(res) {
+	return L.resolveDefault(callServiceList(conf), {}).then((res) => {
 		try {
 			return res[conf].instances || {};
 		} catch (e) {}
@@ -24,21 +24,21 @@ function getInstances() {
 }
 
 function getStatus() {
-	return getInstances().then(function(instances) {
+	return getInstances().then((instances) => {
 		let promises = [];
 		let status = {};
 		for (let key in instances) {
 			let i = instances[key];
 			if (i.running && i.pid) {
 				let f = '/var/run/natmap/' + i.pid + '.json';
-				(function(k) {
-					promises.push(fs.read(f).then(function(res) {
+				((k) => {
+					promises.push(fs.read(f).then((res) => {
 						status[k] = JSON.parse(res);
-					}).catch(function(e){}));
+					}).catch((e) => {}));
 				})(key);
 			}
 		}
-		return Promise.all(promises).then(function() { return status; });
+		return Promise.all(promises).then(() => { return status; });
 	});
 }
 

@@ -28,7 +28,7 @@ const callHostHints = rpc.declare({
 });
 
 function getInstances() {
-	return L.resolveDefault(callServiceList(conf), {}).then(function(res) {
+	return L.resolveDefault(callServiceList(conf), {}).then((res) => {
 		try {
 			return res[conf].instances || {};
 		} catch (e) {}
@@ -37,21 +37,21 @@ function getInstances() {
 }
 
 function getStatus() {
-	return getInstances().then(function(instances) {
+	return getInstances().then((instances) => {
 		let promises = [];
 		let status = {};
 		for (let key in instances) {
 			let i = instances[key];
 			if (i.running && i.pid) {
 				let f = '/var/run/natmap/' + i.pid + '.json';
-				(function(k) {
-					promises.push(fs.read(f).then(function(res) {
+				((k) => {
+					promises.push(fs.read(f).then((res) => {
 						status[k] = JSON.parse(res);
-					}).catch(function(e){}));
+					}).catch((e) =>{}));
 				})(key);
 			}
 		}
-		return Promise.all(promises).then(function() { return status; });
+		return Promise.all(promises).then(() => { return status; });
 	});
 }
 
@@ -62,17 +62,17 @@ function transformHostHints(family, hosts, html) {
 	let ipaddrs = {};
 
 	for (let mac in hosts) {
-		L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4).forEach(function(ip) {
+		L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4).forEach((ip) => {
 			ipaddrs[ip] = hosts[mac].name || mac;
 		});
 
-		L.toArray(hosts[mac].ip6addrs || hosts[mac].ipv6).forEach(function(ip) {
+		L.toArray(hosts[mac].ip6addrs || hosts[mac].ipv6).forEach((ip) => {
 			ip6addrs[ip] = hosts[mac].name || mac;
 		});
 	}
 
 	if (!family || family == 'ipv4') {
-		L.sortedKeys(ipaddrs, null, 'addr').forEach(function(ip) {
+		L.sortedKeys(ipaddrs, null, 'addr').forEach((ip) => {
 			let val = ip;
 			let txt = ipaddrs[ip];
 
@@ -82,7 +82,7 @@ function transformHostHints(family, hosts, html) {
 	}
 
 	if (!family || family == 'ipv6') {
-		L.sortedKeys(ip6addrs, null, 'addr').forEach(function(ip) {
+		L.sortedKeys(ip6addrs, null, 'addr').forEach((ip) => {
 			let val = ip;
 			let txt = ip6addrs[ip];
 
@@ -132,8 +132,8 @@ return view.extend({
 		o.inputstyle = 'apply';
 		o.onclick = function() {
 			return fs.exec('/etc/init.d/natmap', ['reload', ''])
-				.then(function(res) { return window.location = window.location.href.split('#')[0] })
-				.catch(function(e) { ui.addNotification(null, E('p', e.message), 'error') });
+				.then((res) => { return window.location = window.location.href.split('#')[0] })
+				.catch((e) => { ui.addNotification(null, E('p', e.message), 'error') });
 		};
 
 		o = s.option(form.Flag, 'enable', _('Enable'));
@@ -264,8 +264,8 @@ return view.extend({
 			let tcp_stun_host = uci.get_first(conf, 'global', 'def_tcp_stun');
 
 			return fs.exec('/usr/libexec/natmap/natcheck.sh', [udp_stun_host + ':3478', tcp_stun_host + ':3478', test_port, nattest_result_path])
-				.then(function(res) { return window.location = window.location.href.split('#')[0] })
-				.catch(function(e) { ui.addNotification(null, E('p', e.message), 'error') });
+				.then((res) => { return window.location = window.location.href.split('#')[0] })
+				.catch((e) => { ui.addNotification(null, E('p', e.message), 'error') });
 		};
 
 		if (nattest_result.length) {
@@ -721,7 +721,7 @@ return view.extend({
 		o.inputstyle = 'apply';
 		o.onclick = function(ev, section_id) {
 			return fs.exec('/etc/init.d/natmap', ['reload', section_id])
-				.catch(function(e) { ui.addNotification(null, E('p', e.message), 'error') });
+				.catch((e) => { ui.addNotification(null, E('p', e.message), 'error') });
 		};
 		o.editable = true;
 		o.modalonly = false;
