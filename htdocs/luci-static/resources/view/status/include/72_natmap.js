@@ -4,8 +4,8 @@
 'require uci';
 'require rpc';
 
-var conf = 'natmap';
-var natmap_instance = 'natmap';
+const conf = 'natmap';
+const natmap_instance = 'natmap';
 
 const callServiceList = rpc.declare({
 	object: 'service',
@@ -25,12 +25,12 @@ function getInstances() {
 
 function getStatus() {
 	return getInstances().then(function(instances) {
-		var promises = [];
-		var status = {};
-		for (var key in instances) {
-			var i = instances[key];
+		let promises = [];
+		let status = {};
+		for (let key in instances) {
+			let i = instances[key];
 			if (i.running && i.pid) {
-				var f = '/var/run/natmap/' + i.pid + '.json';
+				let f = '/var/run/natmap/' + i.pid + '.json';
 				(function(k) {
 					promises.push(fs.read(f).then(function(res) {
 						status[k] = JSON.parse(res);
@@ -52,9 +52,9 @@ return baseclass.extend({
 	},
 
 	render(res) {
-		var status = res[0];
+		const status = res[0];
 
-		var table = E('table', { 'class': 'table cbi-section-table', 'id': 'natmap_status_table' }, [
+		let table = E('table', { 'class': 'table cbi-section-table', 'id': 'natmap_status_table' }, [
 			E('tr', { 'class': 'tr table-titles' }, [
 				E('th', { 'class': 'th' }, _('Name')),
 				E('th', { 'class': 'th' }, _('Protocol')),
@@ -66,7 +66,7 @@ return baseclass.extend({
 			])
 		]);
 
-        var rows = [];
+        let rows = [];
 		if (status) {
 			Object.keys(status).forEach(sid => {
 				rows.push([
