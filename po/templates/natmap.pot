@@ -106,6 +106,10 @@ msgstr ""
 msgid "For TCP mode"
 msgstr ""
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:307
+msgid "For UDP mode"
+msgstr ""
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:244
 msgid "Forward Settings"
 msgstr ""
@@ -267,6 +271,11 @@ msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:576
 msgid "SRV Record"
+msgstr ""
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:172
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:307
+msgid "STUN check cycle"
 msgstr ""
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:260

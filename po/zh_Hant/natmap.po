@@ -120,6 +120,10 @@ msgstr "防火牆 DNAT"
 msgid "For TCP mode"
 msgstr "用於 TCP 模式"
 
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:307
+msgid "For UDP mode"
+msgstr "用於 UDP 模式"
+
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:244
 msgid "Forward Settings"
 msgstr "轉發設定"
@@ -294,6 +298,11 @@ msgstr "限制到位址群"
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:576
 msgid "SRV Record"
 msgstr "SRV 記錄"
+
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:172
+#: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:307
+msgid "STUN check cycle"
+msgstr "STUN 檢查週期"
 
 #: applications/luci-app-natmapt/htdocs/luci-static/resources/view/natmap.js:260
 msgid "STUN server"
