@@ -437,7 +437,7 @@ return view.extend({
 
 		o = s.taboption('forward', form.Value, 'forward_timeout', _('Forward timeout'), _('Port forwarding session idle timeout in seconds'));
 		o.datatype = "and(uinteger, min(1))";
-		o.placeholder = '120000';
+		o.placeholder = '300000';
 		o.rmempty = true;
 		o.retain = true;
 		o.depends('forward_mode', 'via');
