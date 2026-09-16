@@ -46,7 +46,7 @@ msgstr "绑定端口"
 
 #: htdocs/luci-static/resources/view/natmap.js:151
 msgid "Boot delay"
-msgstr ""
+msgstr "启动延迟"
 
 #: htdocs/luci-static/resources/view/natmap.js:679
 #: htdocs/luci-static/resources/view/natmap.js:688
