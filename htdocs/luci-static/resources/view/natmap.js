@@ -148,6 +148,10 @@ return view.extend({
 		o.default = o.disabled;
 		o.rmempty = false;
 
+		o = s.option(form.Value, 'boot_delay', _('Boot delay'),
+			_('Delay in seconds before starting the service.'));
+		o.datatype = 'uinteger';
+
 		o = s.option(form.Value, 'def_tcp_stun', _('Default ') + _('TCP STUN ') + _('Server'),
 			_('Available server <a href="%s" target="_blank">references</a>')
 				.format(_('https://github.com/muink/rfc5780-stun-server/blob/master/valid_hosts_rfc5780_tcp.txt')));
