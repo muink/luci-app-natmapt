@@ -288,7 +288,7 @@ return view.extend({
 		if (nattest_result.length) {
 			o = s.option(form.DummyValue, '_nattest_result', '　');
 			o.rawhtml = true;
-			o.cfgvalue = function(s) {
+			o.cfgvalue = function(section_id) {
 				return '<details><summary>' + _('Expand/Collapse result') + '</summary>' + nattest_result + '</details>';
 			}
 		};
@@ -411,11 +411,11 @@ return view.extend({
 				let cval = this.cfgvalue(section_id) || this.default;
 				let i = this.keylist.indexOf(cval);
 				return [this.vallist[i], cval];
-			}.call(s.getOption('forward_mode'));
+			}.call(this.section.getOption('forward_mode'));
 			let loopback = function() {
 				let cval = this.cfgvalue(section_id) || this.default;
 				return (cval == this.enabled) ? ' L' : '';
-			}.call(s.getOption('natloopback'));
+			}.call(this.section.getOption('natloopback'));
 			return (cval == this.enabled) ? mode[0] + (mode[1] === 'dnat' ? loopback : '') : _('No');
 		};
 
@@ -432,7 +432,7 @@ return view.extend({
 				let E = document.getElementById('widget.' + this.cbid(section_id).match(/.+\./) + 'family');
 				let i = E ? E.selectedIndex : null;
 				return E ? E.options[i].value : null;
-			}.call(s.getOption('family'));
+			}.call(this.section.getOption('family'));
 
 			if (value == 'dnat' && family == 'ipv6')
 				return _('The DNAT method not support under IPv6');
@@ -491,7 +491,7 @@ return view.extend({
 			let enforward = function() {
 				let cval = this.cfgvalue(section_id) || this.default;
 				return (cval == this.enabled) ? true : false;
-			}.call(s.getOption('forward'));
+			}.call(this.section.getOption('forward'));
 			return enforward ? this.vallist[i] ?? cval : _('No');
 		};
 
@@ -505,16 +505,16 @@ return view.extend({
 			let enforward = function() {
 				let cval = this.cfgvalue(section_id) || this.default;
 				return (cval == this.enabled) ? true : false;
-			}.call(s.getOption('forward'));
+			}.call(this.section.getOption('forward'));
 			let refresh = function() {
 				let cval = this.cfgvalue(section_id) || this.default;
 				return (cval == this.enabled) ? true : false;
-			}.call(s.getOption('refresh'));
+			}.call(this.section.getOption('refresh'));
 			let cltname = function() {
 				let cval = this.cfgvalue(section_id) || this.default;
 				let i = this.keylist.indexOf(cval);
 				return this.vallist[i];
-			}.call(s.getOption('clt_script'));
+			}.call(this.section.getOption('clt_script'));
 			return enforward ? ((cval == '0' && refresh) ? cltname : cval) : _('No');
 		};
 
@@ -680,6 +680,7 @@ return view.extend({
 		o.value('http');
 		o.value('minecraft');
 		o.value('factorio');
+		o.value('easytier');
 		o.default = 'minecraft';
 		o.rmempty = false;
 		o.depends({ ddns_srv: "", "!reverse": true })
@@ -689,6 +690,7 @@ return view.extend({
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
 		o.value('tls', _('TLS'));
+		o.value('wg', _('WireGuard'));
 		o.default = 'tcp';
 		o.rmempty = false;
 		o.depends({ ddns_srv: "", "!reverse": true })
