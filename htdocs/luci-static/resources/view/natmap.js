@@ -655,6 +655,30 @@ return view.extend({
 		o.depends('family', 'ipv6');
 		o.modalonly = true;
 
+		o = s.taboption('ddns', form.DummyValue, '_ddns_txt_dump', _('TXT Record'));
+		o.rawhtml = false;
+		o.cfgvalue = function(section_id) {
+			let fqdn = uci.get(conf, section_id, 'ddns_txt');
+			let cont = uci.get(conf, section_id, 'ddns_txt_content');
+
+			if ( fqdn && cont )
+				return fqdn + '. <TTL> IN TXT　' + cont;
+		};
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_txt', _('FQDN'));
+		o.datatype = 'hostname';
+		o.placeholder = 'txt.example.com';
+		o.rmempty = true;
+		o.modalonly = true;
+
+		o = s.taboption('ddns', form.Value, 'ddns_txt_content', _('Content'));
+		o.placeholder = '"port={{port}}; target={{ip}}"';
+		o.default = '"port={{port}}; target={{ip}}"';
+		o.rmempty = false;
+		o.depends({ ddns_txt: "", "!reverse": true })
+		o.modalonly = true;
+
 		o = s.taboption('ddns', form.DummyValue, '_ddns_srv_dump', _('SRV Record'));
 		o.rawhtml = false;
 		o.cfgvalue = function(section_id) {

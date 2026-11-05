@@ -48,8 +48,8 @@ msgstr "Cổng Bind"
 msgid "Boot delay"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:679
-#: htdocs/luci-static/resources/view/natmap.js:688
+#: htdocs/luci-static/resources/view/natmap.js:702
+#: htdocs/luci-static/resources/view/natmap.js:712
 msgid "Can refer to RFC8552"
 msgstr ""
 
@@ -65,8 +65,12 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
+#: htdocs/luci-static/resources/view/natmap.js:675
+msgid "Content"
+msgstr ""
+
 #: htdocs/luci-static/resources/view/natmap.js:306
-#: htdocs/luci-static/resources/view/natmap.js:759
+#: htdocs/luci-static/resources/view/natmap.js:784
 msgid "Custom Script"
 msgstr ""
 
@@ -122,8 +126,9 @@ msgstr "Cổng bên ngoài"
 
 #: htdocs/luci-static/resources/view/natmap.js:644
 #: htdocs/luci-static/resources/view/natmap.js:651
-#: htdocs/luci-static/resources/view/natmap.js:673
-#: htdocs/luci-static/resources/view/natmap.js:731
+#: htdocs/luci-static/resources/view/natmap.js:669
+#: htdocs/luci-static/resources/view/natmap.js:696
+#: htdocs/luci-static/resources/view/natmap.js:756
 msgid "FQDN"
 msgstr ""
 
@@ -186,7 +191,7 @@ msgstr ""
 msgid "HTTP server"
 msgstr "HTTP server"
 
-#: htdocs/luci-static/resources/view/natmap.js:718
+#: htdocs/luci-static/resources/view/natmap.js:743
 msgid "HTTPS Record"
 msgstr ""
 
@@ -283,8 +288,8 @@ msgstr ""
 msgid "Port forwarding session idle timeout in seconds"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:704
-#: htdocs/luci-static/resources/view/natmap.js:752
+#: htdocs/luci-static/resources/view/natmap.js:729
+#: htdocs/luci-static/resources/view/natmap.js:777
 msgid "Priority"
 msgstr ""
 
@@ -293,7 +298,7 @@ msgid "Private API Domain"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/natmap.js:341
-#: htdocs/luci-static/resources/view/natmap.js:688
+#: htdocs/luci-static/resources/view/natmap.js:712
 #: htdocs/luci-static/resources/view/status/include/72_natmap.js:60
 msgid "Protocol"
 msgstr "Giao thức"
@@ -319,7 +324,7 @@ msgstr ""
 msgid "Restrict to address family"
 msgstr "Giới hạn địa chỉ gia đình"
 
-#: htdocs/luci-static/resources/view/natmap.js:658
+#: htdocs/luci-static/resources/view/natmap.js:681
 msgid "SRV Record"
 msgstr ""
 
@@ -338,7 +343,7 @@ msgstr "Máy chủ STUN"
 msgid "Server"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:679
+#: htdocs/luci-static/resources/view/natmap.js:702
 msgid "Service"
 msgstr ""
 
@@ -346,12 +351,12 @@ msgstr ""
 msgid "Set 0 will follow Public port"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:745
+#: htdocs/luci-static/resources/view/natmap.js:770
 msgid "SvcParams"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/natmap.js:174
-#: htdocs/luci-static/resources/view/natmap.js:689
+#: htdocs/luci-static/resources/view/natmap.js:713
 msgid "TCP"
 msgstr ""
 
@@ -363,12 +368,16 @@ msgstr ""
 msgid "TCP STUN"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:691
+#: htdocs/luci-static/resources/view/natmap.js:715
 msgid "TLS"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:697
-#: htdocs/luci-static/resources/view/natmap.js:737
+#: htdocs/luci-static/resources/view/natmap.js:658
+msgid "TXT Record"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/natmap.js:722
+#: htdocs/luci-static/resources/view/natmap.js:762
 msgid "Target"
 msgstr ""
 
@@ -426,7 +435,7 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/natmap.js:179
 #: htdocs/luci-static/resources/view/natmap.js:184
-#: htdocs/luci-static/resources/view/natmap.js:690
+#: htdocs/luci-static/resources/view/natmap.js:714
 msgid "UDP"
 msgstr ""
 
@@ -450,8 +459,12 @@ msgstr ""
 msgid "Web UI Port"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:711
+#: htdocs/luci-static/resources/view/natmap.js:736
 msgid "Weight"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/natmap.js:716
+msgid "WireGuard"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/natmap.js:163
@@ -475,7 +488,7 @@ msgstr ""
 msgid "luci check may not detect all conflicts."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:764
+#: htdocs/luci-static/resources/view/natmap.js:789
 msgid "⭮"
 msgstr ""
 

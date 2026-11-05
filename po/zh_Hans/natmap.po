@@ -48,8 +48,8 @@ msgstr "绑定端口"
 msgid "Boot delay"
 msgstr "启动延迟"
 
-#: htdocs/luci-static/resources/view/natmap.js:679
-#: htdocs/luci-static/resources/view/natmap.js:688
+#: htdocs/luci-static/resources/view/natmap.js:702
+#: htdocs/luci-static/resources/view/natmap.js:712
 msgid "Can refer to RFC8552"
 msgstr "可以参考 RFC8552"
 
@@ -65,8 +65,12 @@ msgstr "检测 NAT 行为"
 msgid "Comment"
 msgstr "备注"
 
+#: htdocs/luci-static/resources/view/natmap.js:675
+msgid "Content"
+msgstr "内容"
+
 #: htdocs/luci-static/resources/view/natmap.js:306
-#: htdocs/luci-static/resources/view/natmap.js:759
+#: htdocs/luci-static/resources/view/natmap.js:784
 msgid "Custom Script"
 msgstr "自定义脚本"
 
@@ -122,8 +126,9 @@ msgstr "外部端口"
 
 #: htdocs/luci-static/resources/view/natmap.js:644
 #: htdocs/luci-static/resources/view/natmap.js:651
-#: htdocs/luci-static/resources/view/natmap.js:673
-#: htdocs/luci-static/resources/view/natmap.js:731
+#: htdocs/luci-static/resources/view/natmap.js:669
+#: htdocs/luci-static/resources/view/natmap.js:696
+#: htdocs/luci-static/resources/view/natmap.js:756
 msgid "FQDN"
 msgstr ""
 
@@ -186,7 +191,7 @@ msgstr ""
 msgid "HTTP server"
 msgstr "HTTP 服务器"
 
-#: htdocs/luci-static/resources/view/natmap.js:718
+#: htdocs/luci-static/resources/view/natmap.js:743
 msgid "HTTPS Record"
 msgstr "HTTPS 记录"
 
@@ -283,8 +288,8 @@ msgstr "请检查<a href=\"%s\"><b>防火墙规则</b></a>以避免端口冲突<
 msgid "Port forwarding session idle timeout in seconds"
 msgstr "端口转发会话空闲超时 (以秒为单位)"
 
-#: htdocs/luci-static/resources/view/natmap.js:704
-#: htdocs/luci-static/resources/view/natmap.js:752
+#: htdocs/luci-static/resources/view/natmap.js:729
+#: htdocs/luci-static/resources/view/natmap.js:777
 msgid "Priority"
 msgstr "优先权"
 
@@ -293,7 +298,7 @@ msgid "Private API Domain"
 msgstr "私有 API 域名"
 
 #: htdocs/luci-static/resources/view/natmap.js:341
-#: htdocs/luci-static/resources/view/natmap.js:688
+#: htdocs/luci-static/resources/view/natmap.js:712
 #: htdocs/luci-static/resources/view/status/include/72_natmap.js:60
 msgid "Protocol"
 msgstr "协议"
@@ -319,7 +324,7 @@ msgstr "重新载入"
 msgid "Restrict to address family"
 msgstr "地址族限制"
 
-#: htdocs/luci-static/resources/view/natmap.js:658
+#: htdocs/luci-static/resources/view/natmap.js:681
 msgid "SRV Record"
 msgstr "SRV 记录"
 
@@ -338,7 +343,7 @@ msgstr "STUN 服务器"
 msgid "Server"
 msgstr "服务器"
 
-#: htdocs/luci-static/resources/view/natmap.js:679
+#: htdocs/luci-static/resources/view/natmap.js:702
 msgid "Service"
 msgstr "服务"
 
@@ -346,12 +351,12 @@ msgstr "服务"
 msgid "Set 0 will follow Public port"
 msgstr "设为 0 将跟随公共端口"
 
-#: htdocs/luci-static/resources/view/natmap.js:745
+#: htdocs/luci-static/resources/view/natmap.js:770
 msgid "SvcParams"
 msgstr "服务参数"
 
 #: htdocs/luci-static/resources/view/natmap.js:174
-#: htdocs/luci-static/resources/view/natmap.js:689
+#: htdocs/luci-static/resources/view/natmap.js:713
 msgid "TCP"
 msgstr ""
 
@@ -363,12 +368,16 @@ msgstr "TCP 拥塞控制"
 msgid "TCP STUN"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:691
+#: htdocs/luci-static/resources/view/natmap.js:715
 msgid "TLS"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/natmap.js:697
-#: htdocs/luci-static/resources/view/natmap.js:737
+#: htdocs/luci-static/resources/view/natmap.js:658
+msgid "TXT Record"
+msgstr "TXT 记录"
+
+#: htdocs/luci-static/resources/view/natmap.js:722
+#: htdocs/luci-static/resources/view/natmap.js:762
 msgid "Target"
 msgstr "目标"
 
@@ -428,7 +437,7 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/natmap.js:179
 #: htdocs/luci-static/resources/view/natmap.js:184
-#: htdocs/luci-static/resources/view/natmap.js:690
+#: htdocs/luci-static/resources/view/natmap.js:714
 msgid "UDP"
 msgstr ""
 
@@ -452,9 +461,13 @@ msgstr "经由 natmap"
 msgid "Web UI Port"
 msgstr "Web UI 端口"
 
-#: htdocs/luci-static/resources/view/natmap.js:711
+#: htdocs/luci-static/resources/view/natmap.js:736
 msgid "Weight"
 msgstr "权重"
+
+#: htdocs/luci-static/resources/view/natmap.js:716
+msgid "WireGuard"
+msgstr ""
 
 #: htdocs/luci-static/resources/view/natmap.js:163
 msgid ""
@@ -477,7 +490,7 @@ msgstr "keep-alive 间隔 (秒)"
 msgid "luci check may not detect all conflicts."
 msgstr "luci 检查可能无法检测到所有冲突"
 
-#: htdocs/luci-static/resources/view/natmap.js:764
+#: htdocs/luci-static/resources/view/natmap.js:789
 msgid "⭮"
 msgstr ""
 
