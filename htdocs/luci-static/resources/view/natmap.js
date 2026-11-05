@@ -169,7 +169,6 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'def_fwmark_value', _('Default ') + _('Fwmark value'));
-		o.rmempty = true;
 
 		o = s.option(form.Value, 'def_tcp_interval', _('Default ') + _('TCP ') + _('keep-alive interval (seconds)'));
 		o.datatype = "and(uinteger, min(1))";
@@ -308,35 +307,28 @@ return view.extend({
 		o = s.option(form.Flag, 'enable', _('Enable'));
 		o.default = o.disabled;
 		o.editable = true;
-		o.rmempty = true;
 		o.modalonly = false;
 
 		o = s.taboption('general', form.Value, 'interval', _('Keep-alive interval'));
 		o.datatype = "and(uinteger, min(1))";
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('general', form.Value, 'stun_cycle', _('STUN check cycle (once every n intervals)'), _('For UDP mode'));
 		o.datatype = 'uinteger';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('general', form.Value, 'stun_server', _('STUN server'));
 		o.datatype = 'or(hostname, hostport)';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('general', form.Value, 'http_server', _('HTTP server'), _('For TCP mode'));
 		o.datatype = 'or(hostname, hostport)';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('general', form.Value, 'fwmark_value', _('Fwmark value'), _('Mark fwmark for STUN/HTTP outbound traffic'));
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('general', form.Value, 'comment', _('Comment'));
-		o.rmempty = true;
 
 		o = s.taboption('general', form.ListValue, 'udp_mode', _('Protocol'));
 		o.default = '0';
@@ -380,7 +372,6 @@ return view.extend({
 		o.noaliases = true;
 		o.nobridges = true;
 		o.nocreate = false;
-		o.rmempty = true;
 
 		o = s.taboption('general', form.Value, 'port', _('Bind port'),
 			_('Note: After using <code>portrange</code>, the public ports will be opened in rotation</br>') +
@@ -442,7 +433,6 @@ return view.extend({
 
 		o = s.taboption('forward', form.Flag, 'natloopback', _('NAT loopback'));
 		o.default = o.enabled;
-		o.rmempty = true;
 		o.retain = true;
 		o.depends('forward_mode', 'dnat');
 		o.modalonly = true;
@@ -452,14 +442,12 @@ return view.extend({
 		congestions.forEach((res) => {
 			o.value.apply(o, [res]);
 		})
-		o.rmempty = true;
 		o.depends('forward_mode', 'via');
 		o.modalonly = true;
 
 		o = s.taboption('forward', form.Value, 'forward_timeout', _('Forward timeout'), _('Port forwarding session idle timeout in seconds'));
 		o.datatype = "and(uinteger, min(1))";
 		o.placeholder = '300000';
-		o.rmempty = true;
 		o.depends('forward_mode', 'via');
 		o.modalonly = true;
 
@@ -555,14 +543,12 @@ return view.extend({
 		o.modalonly = true;
 
 		o = s.taboption('forward', form.Value, 'clt_username', _('Username'));
-		o.rmempty = true;
 		o.retain = true;
 		o.depends('refresh', '1');
 		o.modalonly = true;
 
 		o = s.taboption('forward', form.Value, 'clt_password', _('Password'));
 		o.password = true;
-		o.rmempty = true;
 		o.depends('refresh', '1');
 		o.modalonly = true;
 
@@ -583,7 +569,6 @@ return view.extend({
 		o = s.taboption('notify', form.Flag, 'notify_enable', _('EnNotify'));
 		o.default = o.disabled;
 		o.editable = true;
-		o.rmempty = true;
 
 		o = s.taboption('notify', form.ListValue, 'notify_script', _('Notify Scripts'));
 		o.datatype = 'file';
@@ -602,24 +587,20 @@ return view.extend({
 			.format('https://github.com/muink/openwrt-natmapt/tree/master/files/notify/', _('<code># All external tokens required</code> Field')));
 		o.datatype = 'list(string)';
 		o.placeholder = 'KEY=VAL';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('notify', form.Value, 'notify_custom_domain', _('Private API Domain'));
 		o.datatype = 'hostname';
 		o.placeholder = 'api.example.com';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('notify', form.Value, 'notify_text', _('Text content'));
 		o.placeholder = 'NATMap: <comment>: [<protocol>] <inner_ip>:<inner_port> -> <ip>:<port>';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Flag, 'ddns_enable', _('EnDDNS'));
 		o.default = o.disabled;
 		o.editable = true;
-		o.rmempty = true;
 
 		o = s.taboption('ddns', form.ListValue, 'ddns_script', _('DDNS Scripts'));
 		o.datatype = 'file';
@@ -638,20 +619,17 @@ return view.extend({
 			.format('https://github.com/muink/openwrt-natmapt/tree/master/files/ddns/', _('<code># All external tokens required</code> Field')));
 		o.datatype = 'list(string)';
 		o.placeholder = 'KEY=VAL';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Value, 'ddns_a', _('A Record ') + _('FQDN'));
 		o.datatype = 'hostname';
 		o.placeholder = 'www.example.com';
-		o.rmempty = true;
 		o.depends('family', 'ipv4');
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Value, 'ddns_aaaa', _('AAAA Record ') + _('FQDN'));
 		o.datatype = 'hostname';
 		o.placeholder = 'ipv6.example.com';
-		o.rmempty = true;
 		o.depends('family', 'ipv6');
 		o.modalonly = true;
 
@@ -669,7 +647,6 @@ return view.extend({
 		o = s.taboption('ddns', form.Value, 'ddns_txt', _('FQDN'));
 		o.datatype = 'hostname';
 		o.placeholder = 'txt.example.com';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Value, 'ddns_txt_content', _('Content'));
@@ -697,7 +674,6 @@ return view.extend({
 		o = s.taboption('ddns', form.Value, 'ddns_srv', _('FQDN'));
 		o.datatype = 'hostname';
 		o.placeholder = 'mc.example.com';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Value, 'ddns_srv_serv', _('Service'), _('Can refer to RFC8552'));
@@ -723,21 +699,20 @@ return view.extend({
 		o = s.taboption('ddns', form.Value, 'ddns_srv_target', _('Target'));
 		o.datatype = 'hostname';
 		o.placeholder = 'cdn.example.com';
-		o.rmempty = true;
 		o.depends({ ddns_srv: "", "!reverse": true })
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Value, 'ddns_srv_priority', _('Priority'));
 		o.datatype = 'range(0, 65535)';
 		o.default = 0;
-		o.rmempty = true;
+		o.rmempty = false;
 		o.depends({ ddns_srv: "", "!reverse": true })
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Value, 'ddns_srv_weight', _('Weight'));
 		o.datatype = 'range(0, 65535)';
 		o.default = 65535;
-		o.rmempty = true;
+		o.rmempty = false;
 		o.depends({ ddns_srv: "", "!reverse": true })
 		o.modalonly = true;
 
@@ -757,28 +732,27 @@ return view.extend({
 		o = s.taboption('ddns', form.Value, 'ddns_https', _('FQDN'));
 		o.datatype = 'hostname';
 		o.placeholder = 'www.example.com';
-		o.rmempty = true;
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Value, 'ddns_https_target', _('Target'));
 		o.datatype = "or('.', hostname)";
 		o.placeholder = '. or web.example.com';
 		o.default = '.';
-		o.rmempty = true;
+		o.rmempty = false;
 		o.depends({ ddns_https: "", "!reverse": true })
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Value, 'ddns_https_svcparams', _('SvcParams'));
 		o.placeholder = 'alpn="h3,h3-29,h2,http/1.1" ipv4hint= ipv6hint= port=';
 		o.default = 'alpn="h2,http/1.1"';
-		o.rmempty = true;
+		o.rmempty = false;
 		o.depends({ ddns_https: "", "!reverse": true })
 		o.modalonly = true;
 
 		o = s.taboption('ddns', form.Value, 'ddns_https_priority', _('Priority'));
 		o.datatype = 'range(1, 65535)';
 		o.default = 1;
-		o.rmempty = true;
+		o.rmempty = false;
 		o.depends({ ddns_https: "", "!reverse": true })
 		o.modalonly = true;
 
