@@ -279,7 +279,10 @@ return view.extend({
 			let udp_stun_host = uci.get_first(conf, 'global', 'def_udp_stun');
 			let tcp_stun_host = uci.get_first(conf, 'global', 'def_tcp_stun');
 
-			return fs.exec('/usr/libexec/natmap/natcheck.sh', [udp_stun_host + ':3478', tcp_stun_host + ':3478', test_port, nattest_result_path])
+			return fs.exec('/usr/libexec/natmap/natcheck.sh', [
+				udp_stun_host + (udp_stun_host.match(/:\d+$/) ? '' : ':3478'),
+				tcp_stun_host + (tcp_stun_host.match(/:\d+$/) ? '' : ':3478'),
+				test_port, nattest_result_path])
 				.then((res) => { return window.location = window.location.href.split('#')[0] })
 				.catch((e) => { ui.addNotification(null, E('p', e.message), 'error') });
 		};
